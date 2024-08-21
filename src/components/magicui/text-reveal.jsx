@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 import { cn } from "@/lib/utils";
-import Meteors from "./meteors";
+
 
 export const TextRevealByWord = ({
   text,
@@ -38,9 +38,7 @@ export const TextRevealByWord = ({
             );
           })}
         </p>
-        <div className="absolute right-0 h-[500px] flex items-center justify-center  rounded-lg border bg-background md:shadow-xl">
-              <Meteors number={30} />
-            </div>
+
       </div>
     </div>)
   );
@@ -49,7 +47,7 @@ export const TextRevealByWord = ({
 const Word = ({ children, progress, range }) => {
   const opacity = useTransform(progress, range, [0, 1]);
   return (
-    (<span className="xl:lg-3 relative mx-1 lg:mx-2.5">
+    (<span >
       <span className={"absolute opacity-30"}>{children}</span>
       <motion.span style={{ opacity: opacity }} className={"text-black dark:text-white"}>
         {children}
