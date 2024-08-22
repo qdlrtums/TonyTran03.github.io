@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/bebas-neue": "^5.0.21",
     "@fontsource/poppins": "^5.0.15",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
