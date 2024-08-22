@@ -8,13 +8,13 @@ export const TextRevealByWord = ({ text, className }) => {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start start", "end end"], // Adjusted offset for smoother start
+    offset: ["start start", "end end"], 
   });
 
   const words = text.split("");
 
   return (
-    <div ref={targetRef} className={cn("relative z-0 h-[200vh]", className)}>
+    <div ref={targetRef} className={cn("relative z-0 h-[225vh]", className)}>
       <div
         className={
           "sticky top-0 mx-auto flex justify-center items-center h-[100vh] max-w-4xl bg-transparent px-[1rem] py-[5rem]"
@@ -22,16 +22,16 @@ export const TextRevealByWord = ({ text, className }) => {
       >
 <Typography
   variant="h2"
-  className={className} // Apply the passed className
+  className={className} 
   sx={{
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     fontFamily: 'Bebas Neue, sans-serif', // Apply the font
-    color: 'red', // Fill color
     '-webkit-text-stroke': '2px #000', // Stroke width and color
     '-webkit-text-fill-color': 'transparent', // Set the fill to transparent initially for the hollow effect
     fontSize: '3rem', // Override font size directly here
+   
   }}
 >
   {words.map((char, i) => {
@@ -51,8 +51,8 @@ export const TextRevealByWord = ({ text, className }) => {
 };
 
 const Word = ({ children, progress, range }) => {
-  const opacity = useTransform(progress, range, [0.2, 1]);
-  const translateY = useTransform(progress, range, [50, 0]);
+  const opacity = useTransform(progress, range, [0.1, 1]);
+  const translateY = useTransform(progress, range, [100, 0]);
 
   return (
     <motion.span
