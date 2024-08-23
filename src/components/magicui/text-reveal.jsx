@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Typography } from "@mui/material";
 import { cn } from "@/lib/utils";
@@ -12,39 +12,58 @@ export const TextRevealByWord = ({ text, className }) => {
   });
 
   const words = text.split("");
+  const [isDayMode, setIsDayMode] = useState(true);
+
+  useEffect(() => {
+    const html = document.querySelector('html');
+
+    const observer = new MutationObserver(() => {
+      const mode = html.getAttribute('data-mode');
+      setIsDayMode(mode === 'day');
+    });
+
+    observer.observe(html, { attributes: true, attributeFilter: ['data-mode'] });
+
+    // Initial check
+    const mode = html.getAttribute('data-mode');
+    setIsDayMode(mode === 'day');
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
-    <div ref={targetRef} className={cn("relative z-0 h-[225vh]", className)}>
+    <div ref={targetRef} className={cn("relative z-0 h-[200vh]", className)}>
       <div
         className={
-          "sticky top-0 mx-auto flex justify-center items-center h-[100vh] max-w-4xl bg-transparent px-[1rem] py-[5rem]"
+          "sticky top-0 mx-auto flex justify-center items-center h-[100vh] px-[1rem] py-[5rem] z-1"
         }
       >
-<Typography
-  variant="h2"
-  className={className} 
-  sx={{
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    fontFamily: 'Bebas Neue, sans-serif', // Apply the font
-    '-webkit-text-stroke': '2px #000', // Stroke width and color
-    '-webkit-text-fill-color': 'transparent', // Set the fill to transparent initially for the hollow effect
-    fontSize: '3rem', // Override font size directly here
-   
-  }}
->
-  {words.map((char, i) => {
-    const start = i / words.length;
-    const end = start + 1 / words.length;
-    const adjustedEnd = i === words.length - 1 ? end : end;
-    return (
-      <Word key={i} progress={scrollYProgress} range={[start, adjustedEnd]}>
-        {char}
-      </Word>
-    );
-  })}
-</Typography>
+        <Typography
+          variant="h2"
+          className={className} 
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            fontFamily: 'Bebas Neue, sans-serif',
+            '-webkit-text-stroke': isDayMode ? '2px #000' : '2px #FFFFFF',
+            '-webkit-text-fill-color': 'transparent',
+            fontSize: '3rem',
+          }}
+        >
+          {words.map((char, i) => {
+            const start = i / words.length;
+            const end = start + 1 / words.length;
+            const adjustedEnd = i === words.length - 1 ? end : end;
+            return (
+              <Word key={i} progress={scrollYProgress} range={[start, adjustedEnd]}>
+                {char}
+              </Word>
+            );
+          })}
+        </Typography>
       </div>
     </div>
   );

@@ -24,7 +24,6 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        cookies:'#FFFDF4',
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -80,7 +79,7 @@ module.exports = {
           "0%": { transform: "rotate(215deg) translateX(0)", opacity: 1 },
           "70%": { opacity: 1 },
           "100%": {
-            transform: "rotate(215deg) translateX(-500px)",
+            transform: "rotate(215deg) translateX(-525px)",
             opacity: 0,
           },
         },

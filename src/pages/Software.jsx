@@ -11,6 +11,7 @@ import '@fontsource/poppins';
 import Intro from './Intro';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import React, { useRef } from 'react';
+import About from './About';
 
 const slugs = [
   "typescript",
@@ -47,7 +48,7 @@ function Software() {
 <>
 
  <Intro/>
-
+ <About/>
   {/* <div className="z-10 flex flex-col justify-center rounded-lg bg-white dark:bg-black pt-7">
       
       <div className='flex-1 flex justify-center'>

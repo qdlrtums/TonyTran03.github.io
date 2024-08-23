@@ -12,6 +12,7 @@
   "dependencies": {
     "@fontsource/bebas-neue": "^5.0.21",
     "@fontsource/poppins": "^5.0.15",
+    "@studio-freight/lenis": "^1.0.42",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.28",
