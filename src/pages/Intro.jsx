@@ -37,6 +37,7 @@ export default function Intro(){
                         <Meteors number={30} />
                     )}
                     
+                    
                     <div className="flex flex-1 justify-center items-center h-full">
                         <div className='flex flex-col'>
                             <Typography sx={{ ml: 2, fontSize: '4rem' }} variant="h1">

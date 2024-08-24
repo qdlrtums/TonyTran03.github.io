@@ -36,10 +36,10 @@ body.lock-scroll {
   }
 
   [data-mode="night"]  {
-    --background: 222.2 84% 4.9%;
+    --background: 222.2 84% 4.9%;  /* changes the background that layers text */
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
-    --cookies: rgb(34, 34, 34); /* Night mode value */
+    --cookies: rgb(34, 34, 34); 
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;

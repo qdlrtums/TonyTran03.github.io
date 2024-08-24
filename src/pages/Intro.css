@@ -52,23 +52,6 @@ animation-range: entry 0 cover 40%;
     }
 }
 
-.name_panel{
-    background-color: var(--cookies)
-}
-
-.intro_back {
-    background-color: #FFFDF4;
-    
-}
-
-
-
-
-[data-mode="night"] 
-    .intro_back {
-        background-color: rgb(34, 34, 34);
-    }
-
 
 
 

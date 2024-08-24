@@ -1,5 +1,6 @@
+import { Typography } from "@mui/material";
 import TextRevealByWord from "../components/magicui/text-reveal";
-
+import '@fontsource/bebas-neue';
 export default function About(){
 
     return(
@@ -29,8 +30,11 @@ export default function About(){
 
         <div id='panel' className="flex flex-1 sticky justify-center h-[200vh]  mt-5  bg-[var(--cookies)] ">
 
-            <div className="flex relative flex-col w-2/5 justify-center  top-0 ">
-            hi
+            <div className="flex relative flex-col w-2/5 justify-center top-0 ">
+            <Typography sx={{ fontFamily: 'Bebas Neue, sans-serif' }}>
+                hi
+            </Typography>
+           
             </div>
 
             
