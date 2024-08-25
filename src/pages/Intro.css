@@ -10,7 +10,7 @@ animation-range: entry 0 cover 100%;
 #panel{
 animation: appear  linear;
 animation-timeline: view();
-animation-range: entry 0 cover 40%;
+animation-range: entry 0 cover 30%;
 
 }
 
@@ -44,11 +44,11 @@ animation-range: entry 0 cover 40%;
 @keyframes appear{
     from{
         opacity:1;
-        transform: translateX(-66vw)
+        transform: translateY(-66vw)
     }
     to{
         opacity:1;
-        transform: translateX(0px)
+        transform: translateY(0px)
     }
 }
 

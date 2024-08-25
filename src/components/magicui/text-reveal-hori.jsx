@@ -24,6 +24,7 @@ export const TextRevealByWord = ({ text, className }) => {
 
     observer.observe(html, { attributes: true, attributeFilter: ['data-mode'] });
 
+    // Initial check
     const mode = html.getAttribute('data-mode');
     setIsDayMode(mode === 'day');
 
@@ -44,12 +45,11 @@ export const TextRevealByWord = ({ text, className }) => {
           className={className} 
           sx={{
             display: 'flex',
-            flexDirection: 'column',
             alignItems: 'center',
             fontFamily: 'Bebas Neue, sans-serif',
             '-webkit-text-stroke': isDayMode ? '2px #000' : '2px #FFFFFF',
             '-webkit-text-fill-color': 'transparent',
-            fontSize: '3rem',
+            fontSize: '9rem',
           }}
         >
           {words.map((char, i) => {
