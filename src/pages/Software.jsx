@@ -12,6 +12,7 @@ import Intro from './Intro';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import React, { useRef } from 'react';
 import About from './About';
+import { VelocityScroll } from '../components/magicui/scroll-based-velocity';
 
 const slugs = [
   "typescript",
@@ -48,6 +49,17 @@ function Software() {
 <>
 
  <Intro/>
+
+
+      <div className="flex flex-col bg-[var(--cookies)] ">
+        <div className="cover w-full absolute h-[7rem] md:h-[7rem] z-10"></div>
+    <VelocityScroll
+        text="About"
+        default_velocity={1}
+        className="font-display text-center text-4xl tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-7xl md:leading-[5rem] bg-[var(--cookies)]"
+      />
+
+      </div>
  <About/>
   {/* <div className="z-10 flex flex-col justify-center rounded-lg bg-white dark:bg-black pt-7">
       

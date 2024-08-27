@@ -27,7 +27,7 @@ export default function WordPullUp({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  return (
+  return (  
     <motion.h1
       ref={ref}
       variants={wrapperFramerProps}

@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap');
+
 
 @font-face {
   font-family: 'CustomFont';
@@ -17,6 +17,12 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: 'shanders';
+  src: url('/fonts/Shanders.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body.lock-scroll {
   overflow: hidden;

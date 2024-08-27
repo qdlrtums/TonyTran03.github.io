@@ -23,6 +23,8 @@ module.exports = {
         poppins: ['Poppins', 'sans-serif'],
         ebgaramond: ['ebgaramond', ' serif'],
         custom: ['CustomFont', 'sans-serif'],
+        shanders: ['shanders', 'sans-serif'],
+        bebasneue: ['bebasneue', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
