@@ -1,14 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/fonts/Casta-Thin.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
 body.lock-scroll {
   overflow: hidden;
 }
+
 @layer base {
   :root {
     --background: 49, 100%, 98%;
-    --cookies: rgb(255, 252, 238); /* Light mode value */
-    --contentColor: rgb(253, 238, 169); /* Light mode value */
+    --cookies: rgb(255, 255, 253); /* Light mode value */
+    --contentColor: #7a6fdf; /* Light mode value */
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -40,7 +52,8 @@ body.lock-scroll {
     --foreground: 210 40% 98%;
     --contentColor: rgb(112, 112, 112); /* Light mode value */
     --card: 222.2 84% 4.9%;
-    --cookies: rgb(34, 34, 34); 
+    --cookies: rgb(41, 36, 36); 
+    --contentColor: #ec5e14; /* Light mode value */
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
@@ -73,7 +86,9 @@ body.lock-scroll {
   body {
     @apply bg-background text-foreground;
       font-family: 'Poppins', sans-serif;
+      font-family: 'eb-garamond', serif;
       font-family: 'Bebas Neue', sans-serif;
+      
     
   }
 }

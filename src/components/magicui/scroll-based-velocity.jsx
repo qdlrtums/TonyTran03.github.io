@@ -81,7 +81,7 @@ export function VelocityScroll({ text, default_velocity = 5, className }) {
   }
 
   return (
-    <section className="absolute flex w-full mt-7">
+    <section className="relative flex w-full mt-7">
       <ParallaxText baseVelocity={default_velocity} className={cn(className, "text-outlined")}>
         {text}
       </ParallaxText>

@@ -42,7 +42,19 @@ export default function Intro(){
                     
                     <div className="flex flex-1 justify-center items-center h-full">
                         <div className='flex flex-col'>
-                            <Typography sx={{ ml: 2, fontSize: '4rem' }} variant="h1">
+                            <Typography 
+                            sx={{ 
+                                ml: 2,
+                                fontSize: '4rem',  
+                                fontFamily: 'CustomFont, sans-serif',
+                                fontSize: {
+                                    xs: '2rem',  // Font size for extra-small screens
+                                    sm: '3rem',  // Font size for small screens
+                                    md: '4rem',  // Font size for medium screens
+                                    lg: '9rem',  // Font size for large screens
+                                  },
+                                
+                                }} variant="h1">
                                 <WordPullUp words={"Tony Tran"} />
                             </Typography>
                             <Typography sx={{ ml: 3, fontSize: '1rem' }}>

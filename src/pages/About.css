@@ -11,7 +11,7 @@
     animation: reveal linear;
       animation-timeline: view();
       animation-range: entry 0 cover 100%;
-      background-color: rgba(var(--cookies), 0.1); /* 50% transparency */ /* Transparent background */
+      background-color: rgba(var(--cookies), 0.5); /* 50% transparency */ /* Transparent background */
       backdrop-filter: blur(2px); /* Blur the content behind the cover */
   }
 
