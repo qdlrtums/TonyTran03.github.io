@@ -48,8 +48,8 @@ export default function Intro(){
                                 fontSize: '4rem',  
                                 fontFamily: 'CustomFont, sans-serif',
                                 fontSize: {
-                                    xs: '2rem',  // Font size for extra-small screens
-                                    sm: '3rem',  // Font size for small screens
+                                    xs: '3rem',  // Font size for extra-small screens
+                                    sm: '4rem',  // Font size for small screens
                                     md: '4rem',  // Font size for medium screens
                                     lg: '9rem',  // Font size for large screens
                                   },
@@ -57,16 +57,27 @@ export default function Intro(){
                                 }} variant="h1">
                                 <WordPullUp words={"Tony Tran"} />
                             </Typography>
-                            <Typography sx={{ ml: 3, fontSize: '1rem' }}>
+                            <Typography sx={{ 
+                                
+                                ml: 4,
+                                mt:3,
+                                 fontSize: '2rem',
+                                 fontFamily: 'CustomFont, sans-serif',
+                                 fontStyle: 'italic', 
+                                 }}>
                                 Aspiring Data Scientist
                             </Typography>
                             <DockBar />
                         </div>
                         
                     </div>
-                 
+                   
                 </div>
+
+                {/**replace with an arrow */}
+                <div className="absolute loader justify-center"></div>
             </div>
+           
         </MuiThemeProvider>
     );
 }
