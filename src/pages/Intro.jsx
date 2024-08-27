@@ -10,6 +10,7 @@ import './Intro.css';
 import CustomMenu from '../components/CustomMenu';
 import Meteors from '../components/magicui/meteors';
 import { useTheme } from '../components/ThemeContext.jsx'; // Import the useTheme hook
+import { VelocityScroll } from '../components/magicui/scroll-based-velocity.jsx';
 
 const muiTheme = createTheme({
     typography: {
@@ -22,9 +23,10 @@ export default function Intro(){
 
     return(
         <MuiThemeProvider theme={muiTheme}>
-            <div className="flex min-h-screen intro_back shadow-sm">
+            <div className="flex min-h-screen shadow-sm">
                 {/* Name panel area */}
-                <div className="absolute w-full h-screen bg-[var(--cookies)] shadow-xl z-10">
+                <div className="absolute w-full h-screen bg-[var(--cookies)]  z-10">
+
                     {isDayMode ? (
                         <Particles
                             className="absolute w-full h-screen"
@@ -34,7 +36,7 @@ export default function Intro(){
                             refresh
                         />
                     ) : (
-                        <Meteors number={30} />
+                        <Meteors number={45} />
                     )}
                     
                     
@@ -48,7 +50,9 @@ export default function Intro(){
                             </Typography>
                             <DockBar />
                         </div>
+                        
                     </div>
+                 
                 </div>
             </div>
         </MuiThemeProvider>

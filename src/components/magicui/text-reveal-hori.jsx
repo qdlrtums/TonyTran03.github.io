@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Typography } from "@mui/material";
 import { cn } from "@/lib/utils";
 
-export const TextRevealByWord = ({ text, className }) => {
+export const TextRevealByWord2 = ({ text, className }) => {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -34,10 +34,10 @@ export const TextRevealByWord = ({ text, className }) => {
   }, []);
 
   return (
-    <div ref={targetRef} className={cn("relative z-0 h-[200vh]", className)}>
+    <div ref={targetRef} className={cn(" z-0 h-[100vh]", className)}>
       <div
         className={
-          "sticky top-0 mx-auto flex justify-center items-center h-[100vh] px-[1rem] py-[5rem] z-1"
+          "sticky   mx-auto flex justify-end items-end  px-[1rem] py-[5rem] z-1"
         }
       >
         <Typography
@@ -46,6 +46,7 @@ export const TextRevealByWord = ({ text, className }) => {
           sx={{
             display: 'flex',
             alignItems: 'center',
+            flexDirection: 'column',
             fontFamily: 'Bebas Neue, sans-serif',
             '-webkit-text-stroke': isDayMode ? '2px #000' : '2px #FFFFFF',
             '-webkit-text-fill-color': 'transparent',
@@ -85,4 +86,4 @@ const Word = ({ children, progress, range }) => {
   );
 };
 
-export default TextRevealByWord;
+export default TextRevealByWord2;

@@ -6,9 +6,9 @@ body.lock-scroll {
 }
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --cookies: #FFFDF4; /* Light mode value */
-    
+    --background: 49, 100%, 98%;
+    --cookies: rgb(255, 252, 238); /* Light mode value */
+    --contentColor: rgb(253, 238, 169); /* Light mode value */
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -38,6 +38,7 @@ body.lock-scroll {
   [data-mode="night"]  {
     --background: 222.2 84% 4.9%;  /* changes the background that layers text */
     --foreground: 210 40% 98%;
+    --contentColor: rgb(112, 112, 112); /* Light mode value */
     --card: 222.2 84% 4.9%;
     --cookies: rgb(34, 34, 34); 
     --card-foreground: 210 40% 98%;
@@ -84,6 +85,5 @@ body.lock-scroll {
 .dock-icon:hover {
   transform: scale(1.2); /* Adjust the scale to your preference */
 }
-
 
 

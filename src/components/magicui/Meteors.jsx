@@ -4,15 +4,15 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export const Meteors = ({
-  number = 20
+  number = 75
 }) => {
   const [meteorStyles, setMeteorStyles] = useState([]);
 
   useEffect(() => {
     const styles = [...new Array(number)].map(() => ({
-      top: -5,
+      top: -4,
       left: Math.floor(Math.random() * window.innerWidth) + "px",
-      animationDelay: Math.random() * 1 + 0.2 + "s",
+      animationDelay: Math.random() *  0.3 + "s",
       animationDuration: Math.floor(Math.random() * 8 + 2) + "s",
     }));
     setMeteorStyles(styles);
@@ -24,12 +24,12 @@ export const Meteors = ({
       (<span
         key={idx}
         className={cn(
-          "pointer-events-none absolute left-1/4 top-1/2 size-0.5 rotate-[215deg] animate-meteor rounded-full bg-slate-500 shadow-[0_0_0_1px_#ffffff10]"
+          "pointer-events-none absolute left-1/3  top-[1vh] size-0.5 rotate-[215deg] animate-meteor rounded-full bg-slate-500 shadow-[0_0_0_1px_#ffffff10]"
         )}
         style={style}>
         {/* Meteor Tail */}
         <div
-          className="pointer-events-none absolute top-1/2 -z-10 h-px w-[50px] -translate-y-1/2 bg-gradient-to-r from-slate-500 to-transparent" />
+          className="pointer-events-none absolute top-1/2  -z-10 h-px w-[50px] -translate-y-1/2 bg-gradient-to-r  from-slate-500 to-transparent" />
       </span>)
     ))}
   </>);

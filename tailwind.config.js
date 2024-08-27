@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 import daisyui from "./node_modules/daisyui";
 module.exports = {
+
   darkMode: ["class"],
   content: [
     './pages/**/*.{js,jsx}',
@@ -76,10 +77,10 @@ module.exports = {
 
       keyframes: {
         meteor: {
-          "0%": { transform: "rotate(215deg) translateX(0)", opacity: 1 },
+          "0%": { transform: "rotate(230deg) translateX(0)", opacity: 1 },
           "70%": { opacity: 1 },
           "100%": {
-            transform: "rotate(215deg) translateX(-525px)",
+            transform: "rotate(230deg) translateX(-525px)",
             opacity: 0,
           },
         },
@@ -88,3 +89,5 @@ module.exports = {
   },
   plugins: [require("tailwindcss-animate"), daisyui],
 }
+
+
