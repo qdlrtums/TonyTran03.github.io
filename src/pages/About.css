@@ -1,13 +1,12 @@
-.cover {
+.block {
   animation: reveal linear;
     animation-timeline: view();
-    animation-range: entry 0 cover 100%;
-    background-color: rgba(var(--cookies), 0.5); /* 50% transparency */ /* Use the cookies variable */; /* Transparent background */
-    backdrop-filter: blur(2px); /* Blur the content behind the cover */
+    animation-range: entry 0 cover 45%;
+
 }
 
 [data-mode="night"] 
-.cover {
+.block {
     animation: reveal linear;
       animation-timeline: view();
       animation-range: entry 0 cover 100%;
@@ -23,7 +22,7 @@
         transform: translateX(0vw); /* Start at original position */
     }
     to {
-        transform: translateX(111vw); /* Move fully to the left */
+        transform: translateX(100vw); /* Move fully to the left */
     }
 }
 @media (max-width: 600px) {

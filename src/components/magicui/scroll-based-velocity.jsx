@@ -68,7 +68,7 @@ export function VelocityScroll({ text, default_velocity = 5, className }) {
     });
 
     return (
-      <div className="w-full overflow-hidden whitespace-nowrap" ref={containerRef}>
+      <div className="w-full overflow-hidden whitespace-nowrap " ref={containerRef}>
         <motion.div className={cn("inline-block", className)} style={{ x }}>
           {Array.from({ length: repetitions }).map((_, i) => (
             <span key={i} ref={i === 0 ? textRef : null}>
@@ -81,10 +81,10 @@ export function VelocityScroll({ text, default_velocity = 5, className }) {
   }
 
   return (
-    <section className="relative flex w-full mt-7">
+  
       <ParallaxText baseVelocity={default_velocity} className={cn(className, "text-outlined")}>
         {text}
       </ParallaxText>
-    </section>
+ 
   );
 }

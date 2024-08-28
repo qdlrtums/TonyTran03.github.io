@@ -1,91 +1,52 @@
-
 import '@fontsource/bebas-neue';
-
 import { VelocityScroll } from "../components/magicui/scroll-based-velocity";
-import './About.css'
-import { useState, memo } from 'react';
+import './About.css';
+import { useRef, useState } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 export default function About() {
+  gsap.registerPlugin(ScrollTrigger);
+  const banner = useRef(null);
 
+  useGSAP(() => {
+    if (banner.current) {
+      gsap.fromTo(banner.current, 
+        { opacity: 0 }, 
+        { opacity: 1, duration: 2, ease: "power1.inOut", 
+          scrollTrigger: {
+            trigger: banner.current, // Element that triggers the animation
+            start: "top 80%", // When the top of the banner is 80% down the viewport
+            end: "bottom 20%", // When the bottom of the banner is 20% down the viewport
+            toggleActions: "play none none none", // Play the animation when entering the viewport
+          }
+        }
+      );
+    }
+  }, []);
 
-    const [select, setSelect] = useState(null);
-
-    const handleSelect = (index) => {
-        setSelect(index);
-    };
 
     return (
-      <div className="h-[100vh] bg-[var(--cookies)]">
-        <div className="flex min-h-screen flex-col relative drop-in">
-          
+        
+      <div className='flex flex-col bg-[var(--cookies)] h-[200vh]'>
 
-          {/**content section */}
-          <div className="m-16 h-auto flex-grow context drop-shadow-md relative z-10">
-            <div className="flex flex-col lg:flex-row h-auto">
 
-            {/**button 1  */}
-            <div
-              className={`flex-1 m-2 flex items-center justify-center 
-                ${
-                    select === 1 ? ' bg-[var(--contentColor)] ' : 'bg-[var(--cookies)]'
-                }`
-                }onClick={() => handleSelect(1)}
-            >
-                01.
-              </div>
-
-               {/**button 2  */}
-               <div
-              className={`flex-1 m-2 flex items-center justify-center 
-                ${
-                    select === 2 ? ' bg-[var(--contentColor)] ' : 'bg-[var(--cookies)]'
-                }`
-                }onClick={() => handleSelect(2)}
-            >
-                02.
-              </div>
-
-               {/**button 3 */}
-               <div
-              className={`flex-1 m-2 flex items-center justify-center 
-                ${
-                    select === 3 ? ' bg-[var(--contentColor)] ' : 'bg-[var(--cookies)]'
-                }`
-                }onClick={() => handleSelect(3)}
-            >
-                03.
-              </div>
-            {/**end of button section */}
+            <div ref={banner} className="h-[50vh] flex flex-col sticky top-2 ">
+   
+                <VelocityScroll 
+                        text="About"
+                        default_velocity={4}
+                        className="font-display text-center text-4xl tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-7xl md:leading-[5rem]"
+                    />
 
 
             </div>
-          </div>
-  
-        {/* Background */}
-        <div className="absolute inset-0 flex justify-center items-center z-0">
-          <svg
-            width="100%"
-            height="100%"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="xMidYMid meet"
-            className="text-[var(--contentColor)]"
-          >
-            <text
-              x="45%"
-              y="60%"
-        
-              dominantBaseline="middle"
-              textAnchor="middle"
-                className="16px lg:text-[36px]"
-              fontFamily="Shanders"
-              fill="var(--contentColor)"  // This line sets the text color
-              opacity={0.1}
-            >
-              A B O U T
-            </text>
-          </svg>
-        </div>
-        </div>
-      </div>
+    
+              <div className='bg-slate-400 flex flex-grow mb-7'>
+                hi
+              </div>
+            </div>
+
     );
-  }
-  
+}

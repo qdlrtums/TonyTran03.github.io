@@ -45,7 +45,7 @@ export default function Intro(){
                             <Typography 
                             sx={{ 
                                 ml: 2,
-                                fontSize: '4rem',  
+                          
                                 fontFamily: 'CustomFont, sans-serif',
                                 fontSize: {
                                     xs: '3rem',  // Font size for extra-small screens
