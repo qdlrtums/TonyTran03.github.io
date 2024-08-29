@@ -13,7 +13,7 @@ export default function About(){
     });
     
     return(
-        <div>
+    <div>
         {/* "HOME" text area */}
    
 

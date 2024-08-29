@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+
 import Software from './pages/Software';
-import Data from './pages/Data';
+import Intro from './pages/Intro';
+
 
 // Lerp function to smooth the transition
 const lerp = (start, end, factor) => {
@@ -50,13 +51,7 @@ function App() {
         <div className="cursor-inner"></div>
         <div className="cursor-outer"></div>
       </div>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Software" element={<Software />} />
-          <Route path="/Data" element={<Data />} />
-        </Routes>
-      </Router>
+      <Intro />
     </div>
   );
 }
