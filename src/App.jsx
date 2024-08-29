@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Software from './pages/Software';
 import Intro from './pages/Intro';
-
+import Later from './pages/Later'
 
 // Lerp function to smooth the transition
 const lerp = (start, end, factor) => {
@@ -46,13 +46,20 @@ function App() {
   }, []);
 
   return (
+    <Router>
     <div>
       <div className="cursor">
         <div className="cursor-inner"></div>
         <div className="cursor-outer"></div>
       </div>
-      <Intro />
+     <Routes>
+
+    
+      <Route index element={<Intro/>} />
+      <Route path='/later' element={<Later/>}/>
+      </Routes>
     </div>
+    </Router>
   );
 }
 

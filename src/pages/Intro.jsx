@@ -46,7 +46,7 @@ export default function Intro() {
     )
     .fromTo(aboutRef.current, 
       { opacity: 0, y:500 }, 
-      { opacity: 1, y: '500', duration: 1, ease: "power1.inOut" }, 
+      { opacity: 1, y: 0, duration: 1, ease: "power1.inOut" }, 
       "<0.5" 
     );
 
@@ -107,22 +107,19 @@ export default function Intro() {
       </div>
 
     {/* About Section */}
- 
-        <div className='flex flex-col bg-[var(--cookies)] h-[100vh]'>
+    <div className='flex flex-col bg-[var(--cookies)] h-screen justify-center items-center'>
+        <div ref={aboutRef} className="w-full flex justify-center items-center">
+          <VelocityScroll 
+            text="About"
+            default_velocity={4}
+            className="font-display text-center text-4xl tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-7xl md:leading-[5rem]"
+          />
+        </div>
+      </div>
 
 
-            <div  ref={aboutRef}  className=" flex flex-col sticky  ">
-
-                <VelocityScroll 
-                        text="About"
-                        default_velocity={4}
-                        className="font-display text-center items-center justify-center text-4xl tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-7xl md:leading-[5rem]"
-                    />
-
-
-            </div>
-
-    </div>
+     
     </MuiThemeProvider>
+    
   );
 }
