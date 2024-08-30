@@ -45,9 +45,7 @@ function Data() {
  
   <div className="z-10 flex flex-col justify-center rounded-lg bg-white dark:bg-black pt-7">
       
-      <div className='flex-1 flex justify-center'>
-        <WordPullUp words={"Welcome to the Software Side"}/>
-      </div>
+
       <div className='flex-1 flex items-center justify-center'>
         <IconCloudDemo/>
       </div>

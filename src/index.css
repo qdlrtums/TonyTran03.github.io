@@ -31,7 +31,7 @@ body.lock-scroll {
 
 @layer base {
   :root {
-    --background: 49, 100%, 98%;
+    --background: ;
     --cookies: rgb(255, 255, 253); /* Light mode value */
     --contentColor: #7a6fdf; /* Light mode value */
     --foreground: 222.2 84% 4.9%;
