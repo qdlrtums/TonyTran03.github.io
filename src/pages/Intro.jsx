@@ -101,11 +101,8 @@ export default function Intro() {
         pinSpacing: true,
       }
     });
-    
-    tl3.to(projectRef.current, {
-      opacity: 0,
+    tl3.to(projectRef.current, {opacity:1});
 
-    });
   }, []);
 
 
@@ -172,12 +169,12 @@ export default function Intro() {
 
    {/* About Section */}
    
-   <div className="h-screen flex justify-center bg-[var(--cookies)]  pb-8 ">
+   <div className="h-screen flex justify-center bg-[var(--cookies)]  pb-8 z-0">
     
 
 
     
-        <div ref={containerRef} className="flex z-10 flex-1 min-h-screen flex-col justify-start sm:justify-center relative bg-[var(--cookies)] p-7">
+        <div ref={containerRef} className="flex flex-1 min-h-screen flex-col justify-start sm:justify-center relative bg-[var(--cookies)] p-7">
       
 
 
@@ -257,7 +254,7 @@ export default function Intro() {
 
           </div>
           <div ref={photoRef} className="imageBox shadow-md m-3">
-          <img src="/" alt="Your Image Description" />
+          <img src="/img/filler.png" alt="Your Image Description" />
       </div>
 
         </div>
@@ -275,9 +272,21 @@ export default function Intro() {
 
 
 {/**projects */}
-      <div ref={projectRef} className="h-screen flex bg-[var(--cookies)] z-0">
+      <div ref={projectRef} className="h-screen flex z-10">
               <div className="flex flex-1 "></div>
-              <div className="flex flex-1 bg-[var(--cookies)]"></div>
+              
+              <div className="flex flex-1 flex-col">
+
+
+              <div className="flex flex-1 justify-start text-black  z-10">
+            <p>hi I am at the top</p>
+          </div>
+
+          <div className="flex flex-1 text-black  z-10">
+            <p>hi I am at the bottom</p>
+          </div>
+
+              </div>
       </div>
     </MuiThemeProvider>
     
