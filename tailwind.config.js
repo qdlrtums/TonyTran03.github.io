@@ -26,6 +26,7 @@ module.exports = {
         shanders: ['shanders', 'sans-serif'],
         bebasneue: ['bebasneue', 'sans-serif'],
       },
+      
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -80,6 +81,7 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         meteor: "meteor 5s linear infinite",
+        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
       },
 
       keyframes: {
@@ -89,6 +91,14 @@ module.exports = {
           "100%": {
             transform: "rotate(230deg) translateX(-525px)",
             opacity: 0,
+          },
+        },
+
+        keyframes: {
+          "border-beam": {
+            "100%": {
+              "offset-distance": "100%",
+            },
           },
         },
       },

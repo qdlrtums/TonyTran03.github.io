@@ -16,6 +16,8 @@ import '@fontsource/bebas-neue';
 import TypingAnimation from "../components/magicui/typing-animation.jsx";
 import { useGSAP } from "@gsap/react";
 import Data, { IconCloudDemo } from "./Data.jsx";
+import { FadeText } from "../components/magicui/fade-text.jsx";
+import { BorderBeam } from "../components/magicui/border-beam.jsx";
 
 
 
@@ -26,10 +28,19 @@ const muiTheme = createTheme({
 });
 
 export default function Intro() {
+          {/* <div ref={aboutRef} className="w-full flex justify-center items-center">
+          
+          <VelocityScroll 
+            text="About"
+            default_velocity={4}
+            className="font-display text-center text-4xl tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-7xl md:leading-[5rem]"
+          />
+         
+        </div> */}
   const refName = useRef(null);
   const aboutRef = useRef(null);
   const refInfo = useRef(null);
-
+  const containerRef = useRef(null);
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -41,7 +52,8 @@ export default function Intro() {
         end: "bottom top",
         scrub: true,
         pin: true, // Keeps the intro section pinned while the animation plays
-        markers: true
+        markers: true,
+       pinSpacer: false
       },
 
 
@@ -60,11 +72,14 @@ export default function Intro() {
 
     const tl2 = gsap.timeline({
       scrollTrigger: {
-        trigger: refInfo.current,
-        start: "top 80%", // Starts the animation when the element is 80% in view
+        trigger: containerRef.current,
+        start: "top 80%", 
         end: "bottom 60%",
         scrub: true,
-        markers: true
+        markers: true,
+        pin: false, // Pin the container itself, not individual elements
+        pinSpacing: false, // Try removing the extra spacing
+
       },
     });
   
@@ -128,9 +143,6 @@ export default function Intro() {
 
       </div>
 
-    {/* About Section */}
-
-
 
     
 
@@ -139,28 +151,24 @@ export default function Intro() {
 
    {/* About Section */}
    
-   <div className="h-screen flex justify-center">
+   <div className="h-screen flex justify-center bg-[var(--cookies)]  pb-8">
     
-        <div className="flex-1 bg-[var(--cookies)] p-8 flex flex-col justify-start sm:justify-center">
+
+
+    
+        <div ref={containerRef} className="flex flex-1  flex-col justify-start sm:justify-center">
         
-        
-        {/* <div ref={aboutRef} className="w-full flex justify-center items-center">
-          
-          <VelocityScroll 
-            text="About"
-            default_velocity={4}
-            className="font-display text-center text-4xl tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-7xl md:leading-[5rem]"
-          />
-         
-        </div> */}
+
+        <div className="imageBox">
+    <img src="/img/hotdaddy.png" alt="Your Image Description" />
+  </div>
 
           {/** Name Row */}
 
-          <div ref={refInfo}>
-
+        <div ref={refInfo} className="relative">
 
           {/** Role Row */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center mb-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center mb-4 ">
             <Typography 
               variant="h6" 
               sx={{
@@ -182,12 +190,13 @@ export default function Intro() {
                 marginLeft: '8px',
               }}
             >
-              Software Developer
+              <FadeText text={"Software Developer"} direction="left" />
+              
             </Typography>
           </div>
 
           {/** Info Row */}
-          <div className="flex flex-col sm:flex-row items-start  sm:items-center">
+          <div className="flex flex-col sm:flex-row items-start  sm:items-center ">
             <Typography 
               variant="h6" 
               sx={{
@@ -196,6 +205,7 @@ export default function Intro() {
                 color: 'black',
                 minWidth: '80px',
                 alignSelf: 'flex-start',
+
               }}
               className="text-left sm:text-right"
             >
@@ -208,6 +218,8 @@ export default function Intro() {
                 fontSize: '1.5rem',
                 color: 'black',
                 marginLeft: '8px',
+                maxWidth: '43vw', // or a fixed value like '600px'
+                wordWrap: 'break-word', // to ensure long words or URLs don't overflow
               }}
             >
                <TypingAnimation
@@ -220,15 +232,17 @@ export default function Intro() {
             </Typography>
           </div>
 
+
+
+
           </div>
+
         </div>
 
         {/** Right side for photo or additional content */}
-        <div className="flex-1 bg-white">
+        <div className="flex w-2/5 bg-white sticky">
         
-          <div className='flex-1 flex items-center justify-center'>
-      <Data/>
-      </div>
+
 
       
         
