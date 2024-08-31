@@ -34,7 +34,7 @@ export default function WordPullUp({
       initial="hidden"
       animate={isInView ? "show" : "hidden"} // Control animation based on isInView
       className={cn(
-        "font-display text-center font-bold leading-[5rem] tracking-[-0.02em] drop-shadow-sm",
+        "font-display text-center  font-bold leading-[5rem] tracking-[-0.02em] drop-shadow-sm",
         className
       )}
     >
