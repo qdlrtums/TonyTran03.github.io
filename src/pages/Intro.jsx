@@ -87,6 +87,8 @@ export default function Intro() {
     tl2.fromTo(refInfo.current, 
       { opacity: 0, x: -100 }, // Starts off-screen to the left
       { opacity: 1, x: -30, duration: 1, ease: "power1.inOut" } // Moves into place
+    ).fromTo(photoRef.current, 
+        {opacity: 0, scale: 0.5},  { opacity: 1, scale:1, duration: 1, ease: "power1.inOut" }, '<0.5'
     )
     ;
 
@@ -162,18 +164,8 @@ export default function Intro() {
       </div>
 
 
-    
-
-      
-
-
    {/* About Section */}
-   
    <div className="h-screen flex justify-center bg-[var(--cookies)]  pb-8 z-0">
-    
-
-
-    
         <div ref={containerRef} className="flex flex-1 min-h-screen flex-col justify-start sm:justify-center relative bg-[var(--cookies)] p-7">
       
 
@@ -275,19 +267,24 @@ export default function Intro() {
       <div ref={projectRef} className="h-screen flex z-10">
               <div className="flex flex-1 "></div>
               
-              <div className="flex flex-1 flex-col">
+            <div className="flex flex-1 flex-col">
 
 
               <div className="flex flex-1 justify-start text-black  z-10">
-            <p>hi I am at the top</p>
-          </div>
+                <p>hi I am at the top</p>
+              </div>
 
           <div className="flex flex-1 text-black  z-10">
             <p>hi I am at the bottom</p>
           </div>
 
-              </div>
+        </div>
       </div>
+
+
+
+
+
     </MuiThemeProvider>
     
   );
