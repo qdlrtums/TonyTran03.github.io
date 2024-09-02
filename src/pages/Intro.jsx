@@ -55,7 +55,7 @@ export default function Intro() {
         end: "bottom top",
         scrub: true,
         pin: true, // Keeps the intro section pinned while the animation plays
-
+        markers: false,
        pinSpacer: false
       },
 
@@ -77,7 +77,7 @@ export default function Intro() {
         start: "top+=30% 70%", 
         end: "bottom bottom",
         scrub: true,
-        markers: true,
+        markers: false,
         pin: false, // Pin the container itself, not individual elements
         pinSpacing: false, // Try removing the extra spacing
 
@@ -96,7 +96,7 @@ export default function Intro() {
         start: "top-=50% center", // Adjust as needed to ensure it's in view
         end: "bottom bottom", // Adjust end point to fit your needs
         scrub: true,
-        markers: true,
+        markers: false,
         pin: containerRef.current,
         pinSpacing: true,
       }

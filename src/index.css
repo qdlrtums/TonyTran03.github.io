@@ -61,7 +61,7 @@ body.lock-scroll {
   }
 
   [data-mode="night"]  {
-    --background: 222.2 84% 4.9%;  /* changes the background that layers text */
+    --background: 242 100% 10%;  /* changes the background that layers text */
     --foreground: 210 40% 98%;
     --contentColor: rgb(112, 112, 112); /* Light mode value */
     --card: 222.2 84% 4.9%;
