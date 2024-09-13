@@ -1,29 +1,24 @@
 .imageBox {
-    width: 70%;
-    height: 50%;
-    display: flex;
+  width: 70%;
+  height: 50%;
+  display: flex;
 
-    align-items: center;
-    /* Optional: Add a border or background for visual clarity */
+  align-items: center;
+  /* Optional: Add a border or background for visual clarity */
 
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 
-
-    border-radius: 2px;
-
+  border-radius: 2px;
 }
 
 .imageBox img {
-    width: 95%;
-    height: 95%;
-    object-fit: cover; /* Ensures the image covers the container while keeping its aspect ratio */
-    border-radius: 8px; /* Optional: Rounded corners */
+  width: 95%;
+  height: 95%;
+  object-fit: cover; /* Ensures the image covers the container while keeping its aspect ratio */
+  border-radius: 8px; /* Optional: Rounded corners */
 }
 
-
-
-
-.projectItem{
-    width: 100;
-    height: 50%;
+.projectItem {
+  width: 100;
+  height: 50%;
 }
