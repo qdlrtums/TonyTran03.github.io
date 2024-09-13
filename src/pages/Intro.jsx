@@ -19,7 +19,7 @@ import Data, { IconCloudDemo } from "./Data.jsx";
 import { FadeText } from "../components/magicui/fade-text.jsx";
 import { BorderBeam } from "../components/magicui/border-beam.jsx";
 import './intro.css'
-
+import cat1 from '/cat1.svg';
 
 const muiTheme = createTheme({
   typography: {
@@ -88,7 +88,7 @@ export default function Intro() {
       { opacity: 0, x: -100 }, // Starts off-screen to the left
       { opacity: 1, x: -30, duration: 1, ease: "power1.inOut" } // Moves into place
     ).fromTo(photoRef.current, 
-        {opacity: 0, scale: 0.5},  { opacity: 1, scale:1, duration: 1, ease: "power1.inOut" }, '<0.5'
+        {opacity: 0, scale: 0},  { opacity: 1, scale:1, duration: 1, ease: "power1.inOut" }, '<0.5'
     )
     ;
 
@@ -192,13 +192,13 @@ export default function Intro() {
               variant="h1" 
               sx={{
                 fontFamily: 'Poppins, sans-serif',
-                fontSize: '3rem',
+                fontSize: '2rem',
                 color: 'black',
                 marginLeft: '8px',
               }}
             >
-              <FadeText text={"Software Developer"} direction="left" />
-              
+              <FadeText text={"Aspiring Data Scientist"} direction="left" />
+            
             </Typography>
           </div>
 
@@ -222,18 +222,30 @@ export default function Intro() {
               variant="body1" 
               sx={{
                 fontFamily: 'Poppins, sans-serif',
-                fontSize: '1.5rem',
+                fontSize: {
+                  xs: '0.5rem',
+                  sm: '0.7rem',
+                  md: '0.8rem',
+                  lg: '1.25rem',
+                },
                 color: 'black',
                 marginLeft: '8px',
-                maxWidth: '43vw',
+                maxWidth: 
+                {
+                  xs:'80vw',
+                  md:'30vw',
+                  lg:'43vw'
+
+                },
                 wordWrap: 'break-word',
                 marginBottom: '7rem',
-                height: '3rem'
+                height: '3rem',
+                display: 'absolute'
               }}
             >
                <TypingAnimation
       className=" font-bold text-black dark:text-white"
-      text="I am self-taught in computer science and started at the age of 14. Inspired by family, namely my brother, Steven, who encouraged me to pursue coding.
+      text="I'm self-taught in computer science and started at the age of 14. 
       Over the years, I've explored various programming languages and developed a passion for problem-solving.
       "
     />
@@ -245,16 +257,27 @@ export default function Intro() {
 
 
           </div>
-          <div ref={photoRef} className="imageBox shadow-md m-3">
-          <img src="/img/filler.png" alt="Your Image Description" />
+          <div ref={photoRef} className="imageBox shadow-md m-3 relative justify-center items-center">
+          <img src="website_photo/selfie_1.jpg" alt="Your Image Description" />
       </div>
 
         </div>
 
         {/** Right side for photo or additional content */}
-        <div className="flex w-2/5 bg-white sticky">
+        <div className="flex w-2/5 bg-white sticky z-10  flex-col mr-7">
         
+        <div className="flex flex-1  items-center justify-center">
 
+          <div className="flex-1 flex">
+            Born and raised in Canada, Ontario
+          </div>
+            <div className="imageBox flex flex-1 shadow-md m-3 relative w-screen">
+                
+                  
+                </div>
+
+
+        </div>
 
       
         
@@ -271,7 +294,9 @@ export default function Intro() {
 
 
               <div className="flex flex-1 justify-start text-black  z-10">
-                <p>hi I am at the top</p>
+              <div>
+                <img src={cat1} alt="Description of the SVG" />
+            </div>
               </div>
 
           <div className="flex flex-1 text-black  z-10">
