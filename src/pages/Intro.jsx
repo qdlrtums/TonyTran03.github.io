@@ -51,78 +51,75 @@ export default function Intro() {
   const projectRef = useRef();
 
   useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    const isMobile = window.innerWidth <= 500; // Define mobile screen width (you can adjust)
 
-    {
-      /**intro timeline */
-    }
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: refName.current,
-        start: "top-=top top",
-        end: "bottom top",
-        scrub: true,
-        pin: true, // Keeps the intro section pinned while the animation plays
-        markers: false,
-        pinSpacer: false,
-      },
-    });
+    if (!isMobile) {
+      // GSAP animations for desktop
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: refName.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+          pin: true, // Pin for desktop only
+          markers: false,
+        },
+      });
 
-    tl.fromTo(
-      refName.current,
-      { opacity: 1, y: 0 },
-      { opacity: 0, y: -100, duration: 1, ease: "power1.inOut" }
-    ).fromTo(
-      photoRef.current,
-      { opacity: 0, y: -100 },
-      { y: 0, opacity: 1, duration: 1, ease: "power2.inOut" },
-      "<0.5"
-    );
-
-    const tl2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top+=30% 70%",
-        end: "bottom bottom",
-        scrub: true,
-        markers: false,
-        pin: false, // Pin the container itself, not individual elements
-        pinSpacing: false, // Try removing the extra spacing
-      },
-    });
-
-    tl2
-      .fromTo(
-        refInfo.current,
-        { opacity: 0, x: -100 }, // Starts off-screen to the left
-        { opacity: 1, x: -30, duration: 1, ease: "power1.inOut" } // Moves into place
-      )
-      .fromTo(
+      tl.fromTo(
+        refName.current,
+        { opacity: 1, y: 0 },
+        { opacity: 0, y: -100, duration: 1, ease: "power1.inOut" }
+      ).fromTo(
         photoRef.current,
-        { opacity: 0, scale: 0 },
-        { opacity: 1, scale: 1, duration: 1, ease: "power1.inOut" },
+        { opacity: 0, y: -100 },
+        { y: 0, opacity: 1, duration: 1, ease: "power2.inOut" },
         "<0.5"
       );
 
-    const tl3 = gsap.timeline({
-      scrollTrigger: {
-        trigger: aboutRef.current,
-        start: "top-=50% center", // Adjust as needed to ensure it's in view
-        end: "bottom bottom", // Adjust end point to fit your needs
-        scrub: true,
-        markers: false,
-        pin: containerRef.current,
-        pinSpacing: true,
-      },
-    });
-    tl3.to(aboutRef.current, { opacity: 1 });
+      const tl2 = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top+=30% 70%",
+          end: "bottom bottom",
+          scrub: true,
+          markers: false,
+        },
+      });
+
+      tl2
+        .fromTo(
+          refInfo.current,
+          { opacity: 0, x: -100 },
+          { opacity: 1, x: -30, duration: 1, ease: "power1.inOut" }
+        )
+        .fromTo(
+          photoRef.current,
+          { opacity: 0, scale: 0 },
+          { opacity: 1, scale: 1, duration: 1, ease: "power1.inOut" },
+          "<0.5"
+        );
+
+      const tl3 = gsap.timeline({
+        scrollTrigger: {
+          trigger: aboutRef.current,
+          start: "top-=50% center",
+          end: "bottom bottom",
+          scrub: true,
+          markers: false,
+          pin: containerRef.current, // Pinning for desktop only
+          pinSpacing: true,
+        },
+      });
+      tl3.to(aboutRef.current, { opacity: 1 });
+    }
   }, []);
 
   const { isDayMode } = useTheme();
 
   return (
     <MuiThemeProvider theme={muiTheme}>
-      <div className="flex min-h-screen shadow-sm">
+      <div className="flex flex-col lg:flex-row min-h-screen shadow-sm">
         <div className="absolute w-full h-screen bg-[var(--cookies)] z-10">
           {isDayMode ? (
             <Particles
@@ -184,14 +181,21 @@ export default function Intro() {
 
             <Typography
               sx={{
-                ml: 4,
-                mb: 2,
-                fontSize: "4rem",
                 fontFamily: "Poppins, sans-serif",
                 fontStyle: "italic",
+                fontWeight: "600",
+                fontSize: {
+                  xs: "2rem",
+                  lg: "2.5rem",
+                },
+                marginBottom: "1rem",
+                color: "#333",
+                textAlign: "left",
+                paddingLeft: "1rem",
+
               }}
             >
-              Aspiring Data Scientist
+              Introduction
             </Typography>
 
             {/** Role Row */}
@@ -200,9 +204,13 @@ export default function Intro() {
                 variant="h6"
                 sx={{
                   fontFamily: "Poppins, sans-serif",
+                  fontWeight: "bold",
                   fontSize: "1rem",
-                  color: "black",
+                  color: "#555",
                   minWidth: "80px",
+                  textAlign: "left",
+                  paddingLeft: "1rem",
+
                 }}
                 className="text-left sm:text-right"
               >
@@ -212,9 +220,12 @@ export default function Intro() {
                 variant="h1"
                 sx={{
                   fontFamily: "Poppins, sans-serif",
-                  fontSize: "2rem",
-                  color: "black",
+                  fontWeight: "normal",
+                  fontSize: "1.75rem",
+                  color: "#111",
                   marginLeft: "8px",
+                  textAlign: "left",
+                  
                 }}
               >
                 <FadeText
@@ -225,15 +236,18 @@ export default function Intro() {
             </div>
 
             {/** Info Row */}
-            <div className="flex flex-col sm:flex-row items-start  sm:items-center ">
+            <div className="flex sm:flex-row items-start  sm:items-center ">
               <Typography
                 variant="h6"
                 sx={{
                   fontFamily: "Poppins, sans-serif",
+                  fontWeight: "bold",
                   fontSize: "1rem",
-                  color: "black",
+                  color: "#555",
                   minWidth: "80px",
-                  alignSelf: "flex-start",
+                  textAlign: "left",
+                  paddingLeft: "1rem", 
+
                 }}
                 className="text-left sm:text-right"
               >
@@ -243,28 +257,30 @@ export default function Intro() {
                 variant="body1"
                 sx={{
                   fontFamily: "Poppins, sans-serif",
-                  fontSize: {
-                    xs: "0.5rem",
-                    sm: "0.7rem",
-                    md: "0.8rem",
-                    lg: "1.25rem",
+                  fontWeight: "normal",
+                  fontSize:{
+                    sm: "0.1rem",
+                    md:"1rem",
+                   
                   },
-                  color: "black",
+                  color: "#333",
                   marginLeft: "8px",
+                  maxWidth: "600px",
+                  lineHeight: "1.5",
+                  textAlign: "left",
+              
+                  height: "6rem",
                   maxWidth: {
                     xs: "80vw",
                     md: "30vw",
                     lg: "43vw",
                   },
                   wordWrap: "break-word",
-                  marginBottom: "7rem",
-                  height: "3rem",
-                  display: "absolute",
                 }}
               >
                 <TypingAnimation
                   className=" font-bold text-black dark:text-white"
-                  text="I'm self-taught in computer science and started at the age of 14. 
+                  text="At the age of 14, I wrote my very first lines of code. 
       Over the years, I've explored various programming languages and developed a passion for problem-solving.
       "
                 />
@@ -273,42 +289,57 @@ export default function Intro() {
           </div>
           <div
             ref={photoRef}
-            className="imageBox shadow-md m-3 relative justify-center items-center"
+            className="imageBox flex rounded-lg shadow-md m-3 relative justify-center items-center"
           >
             <img
               src="website_photo/selfie_1.jpg"
               alt="Your Image Description"
+                className="w-full h-auto object-cover rounded-lg"
             />
           </div>
         </div>
 
         {/** Right side for photo or additional content */}
-        <div className="flex w-2/5 bg-white sticky z-10  flex-col mr-7">
+        <div className="flex w-2/5 bg-white  z-10  flex-col mr-7">
           <div className="flex flex-1  items-center justify-center">
-            <div className="flex-1 flex">
+            <div className="flex-1  flex">
               Born and raised in Canada, Ontario
             </div>
-            <div className="imageBox flex flex-1 shadow-md m-3 relative w-screen"></div>
+            <div className="imageBox rounded-lg -rotate-6 flex flex-1 shadow-md m-3 relative w-screen"></div>
           </div>
         </div>
       </div>
 
-      {/**About me page 2 */}
-      <div ref={aboutRef} className="h-screen flex z-10">
-        <div className="flex flex-1 "></div>
-        {/**right side */}
-        <div className="flex flex-1 flex-col  z-10">
-          <div className="flex flex-1 justify-start text-black ">
-            <div className="imageBox flex flex-1 shadow-md m-3 relative"></div>
-
-            <img src={"website"} alt="Charlie - my Cat" />
-          </div>
-
-          <div className="flex flex-1 text-black  z-10">
-            <p>hi I am at the bottom</p>
-          </div>
-        </div>
+{/**About me page 2 */}  
+<div ref={aboutRef} className="h-screen flex z-10">
+  <div className="flex flex-1"></div>
+  {/**right side collage */}
+  <div className="flex flex-1 flex-col z-10">
+    <div className="relative w-full h-full">
+      <div className="absolute top-0 left-1/4 w-1/2 h-1/2 p-1">
+        <img
+          src="website_photo/cat1.png"
+          alt="Charlie - my Cat"
+          className="object-cover rounded-lg transform rotate-[-7deg]"
+        />
       </div>
+      <div className="absolute top-1/4 right-0 w-1/3 h-1/3 p-1">
+        <img
+          src="website_photo/cat2.jpg"
+          alt="Charlie - my Cat 2"
+          className="object-cover shadow-md rounded-lg transform rotate-[5deg]"
+        />
+      </div>
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 p-1">
+        <img
+          src="website_photo/cat3.jpg"
+          alt="Charlie - my Cat 3"
+          className="object-cover shadow-md rounded-lg transform rotate-[2deg]"
+        />
+      </div>
+    </div>
+  </div>
+</div>
 
       {/**Project*/}
       <div ref={projectRef} className="h-screen flex z-10">
