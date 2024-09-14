@@ -22,6 +22,7 @@ import { FadeText } from "../components/magicui/fade-text.jsx";
 import { BorderBeam } from "../components/magicui/border-beam.jsx";
 import "./intro.css";
 import cat1 from "/cat1.svg";
+import MeteorText from "../components/magicui/MeteorText.jsx";
 
 const muiTheme = createTheme({
   typography: {
@@ -48,8 +49,8 @@ export default function Intro() {
   const aboutRef = useRef();
   const photoRef = useRef();
 
-  const projectRef = useRef();
-
+  const panelRef = useRef(); // Ref for the panel that will come up
+  const meteorRef = useRef();
   useGSAP(() => {
     const isMobile = window.innerWidth <= 500; // Define mobile screen width (you can adjust)
 
@@ -107,11 +108,33 @@ export default function Intro() {
           end: "bottom bottom",
           scrub: true,
           markers: false,
-          pin: containerRef.current, // Pinning for desktop only
+          pin: containerRef.current,
           pinSpacing: true,
         },
       });
       tl3.to(aboutRef.current, { opacity: 1 });
+
+      const tl4 = gsap.timeline({
+        scrollTrigger: {
+          trigger: meteorRef.current, // Start when the meteorRef (Project text) is in view
+          start: "top center", // Adjust this to start when 'Project' reaches the center of the viewport
+          end: "bottom top", // End when the bottom of the meteorRef reaches the top of the viewport
+          scrub: true, // Smooth parallax effect
+          pin: false, // Do not pin the meteorRef itself
+          markers: false, // Enable for debugging trigger points
+        },
+      });
+      tl4.fromTo(
+        panelRef.current,
+        { y: "100%", opacity: 0 }, // Start off-screen at the bottom
+        {
+          y: "0%",
+          opacity: 1,
+          duration: 1.5,
+          ease: "power3.inOut",
+          pin: true, // Pin the panelRef once it reaches its final position
+        }
+      );
     }
   }, []);
 
@@ -192,7 +215,6 @@ export default function Intro() {
                 color: "#333",
                 textAlign: "left",
                 paddingLeft: "1rem",
-
               }}
             >
               Introduction
@@ -210,7 +232,6 @@ export default function Intro() {
                   minWidth: "80px",
                   textAlign: "left",
                   paddingLeft: "1rem",
-
                 }}
                 className="text-left sm:text-right"
               >
@@ -225,7 +246,6 @@ export default function Intro() {
                   color: "#111",
                   marginLeft: "8px",
                   textAlign: "left",
-                  
                 }}
               >
                 <FadeText
@@ -246,8 +266,7 @@ export default function Intro() {
                   color: "#555",
                   minWidth: "80px",
                   textAlign: "left",
-                  paddingLeft: "1rem", 
-
+                  paddingLeft: "1rem",
                 }}
                 className="text-left sm:text-right"
               >
@@ -258,22 +277,21 @@ export default function Intro() {
                 sx={{
                   fontFamily: "Poppins, sans-serif",
                   fontWeight: "normal",
-                  fontSize:{
+                  fontSize: {
                     sm: "0.1rem",
-                    md:"1rem",
-                   
+                    md: "1rem",
                   },
                   color: "#333",
                   marginLeft: "8px",
                   maxWidth: "600px",
                   lineHeight: "1.5",
                   textAlign: "left",
-              
+
                   height: "6rem",
                   maxWidth: {
                     xs: "80vw",
                     md: "30vw",
-                    lg: "43vw",
+                    lg: "20vw",
                   },
                   wordWrap: "break-word",
                 }}
@@ -294,7 +312,7 @@ export default function Intro() {
             <img
               src="website_photo/selfie_1.jpg"
               alt="Your Image Description"
-                className="w-full h-auto object-cover rounded-lg"
+              className="w-full h-auto object-cover rounded-lg"
             />
           </div>
         </div>
@@ -310,40 +328,57 @@ export default function Intro() {
         </div>
       </div>
 
-{/**About me page 2 */}  
-<div ref={aboutRef} className="h-screen flex z-10">
-  <div className="flex flex-1"></div>
-  {/**right side collage */}
-  <div className="flex flex-1 flex-col z-10">
-    <div className="relative w-full h-full">
-      <div className="absolute top-0 left-1/4 w-1/2 h-1/2 p-1">
-        <img
-          src="website_photo/cat1.png"
-          alt="Charlie - my Cat"
-          className="object-cover rounded-lg transform rotate-[-7deg]"
-        />
+      {/**About me page 2 */}
+      <div ref={aboutRef} className="h-screen flex z-10">
+        <div className="flex flex-1"></div>
+        {/**right side collage */}
+        <div className="flex flex-1 flex-col z-10">
+          <div className="relative w-full h-full">
+            <div className="absolute top-0 left-1/4 w-1/2 h-1/2 p-1">
+              <img
+                src="website_photo/cat1.png"
+                alt="Charlie - my Cat"
+                className="object-cover rounded-lg transform rotate-[-7deg]"
+              />
+            </div>
+            <div className="absolute top-1/4 right-0 w-1/3 h-1/3 p-1">
+              <img
+                src="website_photo/cat2.jpg"
+                alt="Charlie - my Cat 2"
+                className="object-cover shadow-md rounded-lg transform rotate-[5deg]"
+              />
+            </div>
+            <div className="absolute bottom-0 left-0 w-1/3 h-1/3 p-1">
+              <img
+                src="website_photo/cat3.jpg"
+                alt="Charlie - my Cat 3"
+                className="object-cover shadow-md rounded-lg transform rotate-[2deg]"
+              />
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="absolute top-1/4 right-0 w-1/3 h-1/3 p-1">
-        <img
-          src="website_photo/cat2.jpg"
-          alt="Charlie - my Cat 2"
-          className="object-cover shadow-md rounded-lg transform rotate-[5deg]"
-        />
-      </div>
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 p-1">
-        <img
-          src="website_photo/cat3.jpg"
-          alt="Charlie - my Cat 3"
-          className="object-cover shadow-md rounded-lg transform rotate-[2deg]"
-        />
-      </div>
-    </div>
-  </div>
-</div>
 
       {/**Project*/}
-      <div ref={projectRef} className="h-screen flex z-10">
-        <div className=""></div>
+
+      <div className="h-screen">
+        <div ref={meteorRef} className="h-screen z-10">
+          <MeteorText />
+        </div>
+
+        <div ref={panelRef} className="h-screen  w-full bg-blue-500 z-20">
+          <Typography
+            sx={{
+              fontFamily: "Poppins, sans-serif",
+              fontSize: "4rem",
+              color: "white",
+              textAlign: "center",
+              marginTop: "20%",
+            }}
+          >
+            Overlay Panel Content
+          </Typography>
+        </div>
       </div>
     </MuiThemeProvider>
   );
