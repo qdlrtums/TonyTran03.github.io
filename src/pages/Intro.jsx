@@ -123,6 +123,7 @@ export default function Intro() {
           end: "top bottom",
           scrub: 1.5,
           markers: true, // Enable markers for debugging
+          pin: panelRef.current,
         },
       });
 
@@ -363,8 +364,8 @@ export default function Intro() {
         </div>
 
         <div
-          ref={panelRef}
-          className="fixed  bottom-0  w-screen h-screen shadow-lg bg-white z-20 flex"
+          ref={panelRef} //the projct pop-up
+          className="fixed  bottom-0  w-screen h-[200vh] shadow-lg bg-white z-20 flex"
         >
           <Typography
             sx={{
