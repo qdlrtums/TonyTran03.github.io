@@ -59,7 +59,7 @@ export default function Intro() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: refName.current,
-          start: "top top",
+          start: "top top+=50%",
           end: "bottom top",
           scrub: true,
           pin: true, // Pin for desktop only
@@ -69,8 +69,8 @@ export default function Intro() {
 
       tl.fromTo(
         refName.current,
-        { opacity: 1, y: 0 },
-        { opacity: 0, y: -100, duration: 1, ease: "power1.inOut" }
+        { opacity: 1, y: -100 },
+        { opacity: 0, y: -200, duration: 1, ease: "power1.inOut" }
       ).fromTo(
         photoRef.current,
         { opacity: 0, y: -100 },
@@ -113,27 +113,20 @@ export default function Intro() {
         },
       });
       tl3.to(aboutRef.current, { opacity: 1 });
-
       const tl4 = gsap.timeline({
         scrollTrigger: {
-          trigger: meteorRef.current, // Start when the meteorRef (Project text) is in view
-          start: "top center", // Adjust this to start when 'Project' reaches the center of the viewport
-          end: "bottom top", // End when the bottom of the meteorRef reaches the top of the viewport
-          scrub: true, // Smooth parallax effect
-          pin: false, // Do not pin the meteorRef itself
-          markers: false, // Enable for debugging trigger points
+          trigger: meteorRef.current,
+          start: "top top",
+          end: "top bottom",
+          scrub: 0.5,
+          markers: true, // Enable markers for debugging
         },
       });
+
       tl4.fromTo(
         panelRef.current,
-        { y: "100%", opacity: 0 }, // Start off-screen at the bottom
-        {
-          y: "0%",
-          opacity: 1,
-          duration: 1.5,
-          ease: "power3.inOut",
-          pin: true, // Pin the panelRef once it reaches its final position
-        }
+        { y: "100%", opacity: 0 },
+        { y: "50%", opacity: 1, ease: "power3.inOut" }
       );
     }
   }, []);
@@ -283,7 +276,7 @@ export default function Intro() {
                   },
                   color: "#333",
                   marginLeft: "8px",
-                  maxWidth: "600px",
+
                   lineHeight: "1.5",
                   textAlign: "left",
 
@@ -361,12 +354,15 @@ export default function Intro() {
 
       {/**Project*/}
 
-      <div className="h-screen">
+      <div className="h-screen relative">
         <div ref={meteorRef} className="h-screen z-10">
           <MeteorText />
         </div>
 
-        <div ref={panelRef} className="h-screen  w-full bg-blue-500 z-20">
+        <div
+          ref={panelRef}
+          className="fixed bottom-0 left-0 w-full h-screen bg-blue-500 z-20"
+        >
           <Typography
             sx={{
               fontFamily: "Poppins, sans-serif",
