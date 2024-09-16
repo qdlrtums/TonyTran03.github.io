@@ -23,6 +23,9 @@ import { BorderBeam } from "../components/magicui/border-beam.jsx";
 import "./intro.css";
 import cat1 from "/cat1.svg";
 import MeteorText from "../components/magicui/MeteorText.jsx";
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 
 const muiTheme = createTheme({
   typography: {
@@ -116,9 +119,9 @@ export default function Intro() {
       const tl4 = gsap.timeline({
         scrollTrigger: {
           trigger: meteorRef.current,
-          start: "top top",
+          start: "top top+=20%",
           end: "top bottom",
-          scrub: 0.5,
+          scrub: 1.5,
           markers: true, // Enable markers for debugging
         },
       });
@@ -126,7 +129,7 @@ export default function Intro() {
       tl4.fromTo(
         panelRef.current,
         { y: "100%", opacity: 0 },
-        { y: "50%", opacity: 1, ease: "power3.inOut" }
+        { y: "1vh", opacity: 1, ease: "power3.inOut" }
       );
     }
   }, []);
@@ -354,25 +357,39 @@ export default function Intro() {
 
       {/**Project*/}
 
-      <div className="h-screen relative">
+      <div className="h-[200vh] relative">
         <div ref={meteorRef} className="h-screen z-10">
           <MeteorText />
         </div>
 
         <div
           ref={panelRef}
-          className="fixed bottom-0 left-0 w-full h-screen bg-blue-500 z-20"
+          className="fixed  bottom-0  w-screen h-screen shadow-lg bg-white z-20 flex"
         >
           <Typography
             sx={{
               fontFamily: "Poppins, sans-serif",
               fontSize: "4rem",
-              color: "white",
+            
               textAlign: "center",
               marginTop: "20%",
             }}
           >
+
+            {/*insert grid here.*/}
             Overlay Panel Content
+            <Box sx={{ flexGrow: 1, display: 'flex', position: "absolute" }}>
+            <Grid container spacing={2}>
+
+                <Grid item xs={8}>
+                 hi
+                </Grid>
+                <Grid item xs={4}>
+                 hi2
+                </Grid>
+            </Grid>
+
+            </Box>
           </Typography>
         </div>
       </div>

@@ -22,3 +22,12 @@
   width: 100;
   height: 50%;
 }
+
+
+
+.projectBoxes{
+  width: 95%;
+  height: 95%;
+  object-fit: cover; /* Ensures the image covers the container while keeping its aspect ratio */
+  border-radius: 8px; /* Optional: Rounded corners */
+}
