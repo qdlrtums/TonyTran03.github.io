@@ -127,11 +127,20 @@ export default function Intro() {
         },
       });
 
-      tl4.fromTo(
+      tl4
+      .fromTo(
         panelRef.current,
         { y: "100%", opacity: 0 },
         { y: "1vh", opacity: 1, ease: "power3.inOut" }
-      );
+      )
+      .fromTo(
+        meteorRef.current, 
+        {opacity:1},
+         {opacity: 0, ease: "power3.inOut"},"<0.5"
+        );
+      
+      
+
     }
   }, []);
 
@@ -365,7 +374,7 @@ export default function Intro() {
 
         <div
           ref={panelRef} //the projct pop-up
-          className="fixed  bottom-0  w-screen h-[200vh] shadow-lg bg-white z-20 flex"
+          className="fixed left-0 bottom-0 w-screen h-[100vh] shadow-lg bg-white z-20 flex"
         >
           <Typography
             sx={{
