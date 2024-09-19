@@ -48,18 +48,14 @@ export default function Intro() {
   const refName = useRef();
 
   const refInfo = useRef();
+  const containerRef = useRef();
   const aboutRef = useRef();
-  const catSectionRef = useRef();
   const photoRef = useRef();
-
-
 
   const panelRef = useRef(); // Ref for the panel that will come up
   const meteorRef = useRef();
   
 
-//top headers
-const introHeaderRef = useRef();
   //for the left side
 
   const infoBarRef = useRef();
@@ -85,16 +81,20 @@ const introHeaderRef = useRef();
         refName.current,
         { opacity: 1, y: -100 },
         { opacity: 0, y: -200, duration: 1, ease: "power1.inOut" }
+      ).fromTo(
+        photoRef.current,
+        { opacity: 0, y: -100 },
+        { y: 0, opacity: 1, duration: 1, ease: "power2.inOut" },
+        "<0.5"
       );
 
       const tl2 = gsap.timeline({
         scrollTrigger: {
-          trigger: aboutRef.current,
-          start: "top+=50% 70%",
-         end: "bottom bottom",
-      
+          trigger: containerRef.current,
+          start: "top+=30% 70%",
+          end: "bottom bottom",
           scrub: true,
-          markers: true,
+          markers: false,
         },
       });
 
@@ -106,23 +106,23 @@ const introHeaderRef = useRef();
         )
         .fromTo(
           photoRef.current,
-          { opacity: 0 },
-          { opacity: 1, duration: 1, ease: "power1.in" },
+          { opacity: 0, scale: 0 },
+          { opacity: 1, scale: 1, duration: 1, ease: "power1.inOut" },
           "<0.5"
         );
 
       const tl3 = gsap.timeline({
         scrollTrigger: {
-          trigger: catSectionRef.current,
+          trigger: aboutRef.current,
           start: "top-=50% center",
           end: "bottom bottom",
           scrub: true,
           markers: false,
-          pin: false,
+          pin: containerRef.current,
           pinSpacing: true,
         },
       });
-      tl3.to(catSectionRef.current, { opacity: 1 });
+      tl3.to(aboutRef.current, { opacity: 1 });
 
 
 
@@ -185,16 +185,17 @@ const introHeaderRef = useRef();
       </div>
 
       {/* About Section */}
-      <div className="h-screen flex flex-col justify-center bg-[var(--cookies)] z-0">
-
-            
+      <div className="h-screen flex justify-center bg-[var(--cookies)]  pb-8 z-0">
         <div
-          ref={aboutRef}
-          className="flex  h-screen flex-col justify-start sm:justify-center relative bg-[var(--cookies)] p-7"
+          ref={containerRef}
+          className="flex flex-1 min-h-screen flex-col justify-start sm:justify-center relative bg-[var(--cookies)] p-7"
         >
-          {/** The word-popup*/}
+          {/** Name Row */}
 
-          <Typography
+          <div ref={refInfo} className="relative ">
+            {/*header*/}
+
+            <Typography
               sx={{
                 fontFamily: "Poppins, sans-serif",
                 fontStyle: "italic",
@@ -211,10 +212,6 @@ const introHeaderRef = useRef();
             >
               Introduction
             </Typography>
-          <div ref={refInfo}>
-      
-
-
 
             {/** Role Row */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center mb-4 ">
@@ -308,14 +305,91 @@ const introHeaderRef = useRef();
             <img
               src="website_photo/selfie_1.jpg"
               alt="Your Image Description"
-              className="flex w-full h-auto object-cover imageBox rounded-lg"
+              className="w-full h-auto object-cover rounded-lg"
             />
           </div>
         </div>
 
+        {/** Right side for photo or additional content */}
+        <div className="flex w-2/5 bg-white  z-10  flex-col mr-7">
+          <div className="flex flex-1  items-center justify-center">
+            <div className="flex-1  flex">
+              Born and raised in Canada, Ontario
+            </div>
+            <div className="imageBox rounded-lg -rotate-6 flex flex-1 shadow-md m-3 relative w-screen"></div>
+          </div>
+        </div>
       </div>
 
+      {/**About me page 2 */}
+      <div ref={aboutRef} className="h-screen flex z-10">
+        <div className="flex flex-1"></div>
+        {/**right side collage */}
+        <div className="flex flex-1 flex-col z-10">
+          <div className="relative w-full h-full">
+            <div className="absolute top-0 left-1/4 w-1/2 h-1/2 p-1">
+              <img
+                src="website_photo/cat1.png"
+                alt="Charlie - my Cat"
+                className="object-cover rounded-lg transform rotate-[-7deg]"
+              />
+            </div>
+            <div className="absolute top-1/4 right-0 w-1/3 h-1/3 p-1">
+              <img
+                src="website_photo/cat2.jpg"
+                alt="Charlie - my Cat 2"
+                className="object-cover shadow-md rounded-lg transform rotate-[5deg]"
+              />
+            </div>
+            <div className="absolute bottom-0 left-0 w-1/3 h-1/3 p-1">
+              <img
+                src="website_photo/cat3.jpg"
+                alt="Charlie - my Cat 3"
+                className="object-cover shadow-md rounded-lg transform rotate-[2deg]"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
+      {/**Project*/}
+
+      <div className="h-[200vh] relative">
+        <div ref={meteorRef} className="h-screen z-10">
+          <MeteorText />
+        </div>
+
+        <div
+          ref={panelRef} //the projct pop-up
+          className=" w-screen h-[100vh] shadow-lg bg-white z-20 flex"
+        >
+          <Typography
+            sx={{
+              fontFamily: "Poppins, sans-serif",
+              fontSize: "4rem",
+            
+              textAlign: "center",
+              marginTop: "20%",
+            }}
+          >
+
+            {/*insert grid here.*/}
+            Overlay Panel Content
+            <Box sx={{ flexGrow: 1, display: 'flex', position: "absolute" }}>
+            <Grid container spacing={2}>
+
+                <Grid item xs={8}>
+                 hi
+                </Grid>
+                <Grid item xs={4}>
+                 hi2
+                </Grid>
+            </Grid>
+
+            </Box>
+          </Typography>
+        </div>
+      </div>
     </MuiThemeProvider>
   );
 }

@@ -52,14 +52,10 @@ export default function Intro() {
   const catSectionRef = useRef();
   const photoRef = useRef();
 
-
-
   const panelRef = useRef(); // Ref for the panel that will come up
   const meteorRef = useRef();
   
 
-//top headers
-const introHeaderRef = useRef();
   //for the left side
 
   const infoBarRef = useRef();
@@ -90,9 +86,9 @@ const introHeaderRef = useRef();
       const tl2 = gsap.timeline({
         scrollTrigger: {
           trigger: aboutRef.current,
-          start: "top+=50% 70%",
+          start: "top+=30% 70%",
          end: "bottom bottom",
-      
+          pin: aboutRef.current,
           scrub: true,
           markers: true,
         },
@@ -187,14 +183,7 @@ const introHeaderRef = useRef();
       {/* About Section */}
       <div className="h-screen flex flex-col justify-center bg-[var(--cookies)] z-0">
 
-            
-        <div
-          ref={aboutRef}
-          className="flex  h-screen flex-col justify-start sm:justify-center relative bg-[var(--cookies)] p-7"
-        >
-          {/** The word-popup*/}
-
-          <Typography
+      <Typography
               sx={{
                 fontFamily: "Poppins, sans-serif",
                 fontStyle: "italic",
@@ -211,7 +200,14 @@ const introHeaderRef = useRef();
             >
               Introduction
             </Typography>
-          <div ref={refInfo}>
+            
+        <div
+          ref={aboutRef}
+          className="flex top-0 h-[200vh] flex-col justify-start sm:justify-center relative bg-[var(--cookies)] p-7"
+        >
+          {/** The word-popup*/}
+
+          <div ref={refInfo} className="relative  ">
       
 
 
@@ -308,14 +304,91 @@ const introHeaderRef = useRef();
             <img
               src="website_photo/selfie_1.jpg"
               alt="Your Image Description"
-              className="flex w-full h-auto object-cover imageBox rounded-lg"
+              className="flex w-full h-auto object-cover rounded-lg"
             />
           </div>
         </div>
 
+        {/** Right side for photo or additional content */}
+        <div className="flex bg-white  z-10  flex-col mr-7">
+          <div className="flex flex-1  items-center justify-center">
+     
+              Born and raised in Canada, Ontario
+       
+            <div className="imageBox rounded-lg -rotate-6 flex flex-1 shadow-md m-3 relative w-screen"></div>
+          </div>
+        </div>
       </div>
 
+      {/**About me page 2 right side */}
+      <div ref={catSectionRef} className="h-screen flex z-10">
+        <div className="flex flex-1"></div>
+        {/**right side collage */}
+        <div className="flex flex-1 flex-col z-10">
+          <div className="relative w-full h-full">
+            <div className="absolute top-0 left-1/4 w-1/2 h-1/2 p-1">
+              <img
+                src="website_photo/cat1.png"
+                alt="Charlie - my Cat"
+                className="object-cover rounded-lg transform rotate-[-7deg]"
+              />
+            </div>
+            <div className="absolute top-1/4 right-0 w-1/3 h-1/3 p-1">
+              <img
+                src="website_photo/cat2.jpg"
+                alt="Charlie - my Cat 2"
+                className="object-cover shadow-md rounded-lg transform rotate-[5deg]"
+              />
+            </div>
+            <div className="absolute bottom-0 left-0 w-1/3 h-1/3 p-1">
+              <img
+                src="website_photo/cat3.jpg"
+                alt="Charlie - my Cat 3"
+                className="object-cover shadow-md rounded-lg transform rotate-[2deg]"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
+      {/**Project*/}
+
+      <div className="h-[200vh] relative">
+        <div ref={meteorRef} className="h-screen z-10">
+          <MeteorText />
+        </div>
+
+        <div
+          ref={panelRef} //the projct pop-up
+          className=" w-screen h-[100vh] shadow-lg bg-white z-20 flex"
+        >
+          <Typography
+            sx={{
+              fontFamily: "Poppins, sans-serif",
+              fontSize: "4rem",
+            
+              textAlign: "center",
+              marginTop: "20%",
+            }}
+          >
+
+            {/*insert grid here.*/}
+            Overlay Panel Content
+            <Box sx={{ flexGrow: 1, display: 'flex', position: "absolute" }}>
+            <Grid container spacing={2}>
+
+                <Grid item xs={8}>
+                 hi
+                </Grid>
+                <Grid item xs={4}>
+                 hi2
+                </Grid>
+            </Grid>
+
+            </Box>
+          </Typography>
+        </div>
+      </div>
     </MuiThemeProvider>
   );
 }
