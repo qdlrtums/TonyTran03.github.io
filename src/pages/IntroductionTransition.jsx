@@ -8,19 +8,17 @@ import { Typography } from "@mui/material";
 export default function IntroductionTransition() {
   const introHeaderRef = useRef();
   const lettersRef = useRef([]);
-  const aboutRef = useRef();
-
   useGSAP(() => {
     // Pinning the intro text
     gsap
       .timeline({
         scrollTrigger: {
           trigger: introHeaderRef.current,
-          start: "top top", // When the top of the trigger hits the top of the viewport
-          end: "bottom+=40% center", // Pin until this point
-          pin: true, // This pins the intro text
+          start: "top top",
+          end: "bottom+=40% center-=10%",
+          pin: true,
           scrub: true,
-          markers: true,
+          markers: false,
         },
       })
       .fromTo(
@@ -32,18 +30,8 @@ export default function IntroductionTransition() {
           ease: "power1.inOut",
           stagger: 0.1,
         }
-      );
-
-    // Animating the about section
-    const t2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: aboutRef.current,
-        start: "top-=20% top",
-        end: "center center",
-      },
-    });
-
-    t2.fromTo(aboutRef.current, { y: "100vh" }, { y: "0px" });
+      )
+      .to(lettersRef.current, { left: 0 });
   }, []);
 
   const text = "INTRODUCTION";
@@ -80,8 +68,6 @@ export default function IntroductionTransition() {
           </Typography>
         </div>
       </div>
-
-      <div className="flex h-screen"></div>
     </>
   );
 }

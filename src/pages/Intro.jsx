@@ -30,16 +30,7 @@ const muiTheme = createTheme({
 export default function Intro() {
   const refName = useRef();
 
-  const aboutMeTextRef = useRef();
-  const aboutMeTextContainerRef = useRef();
-  const catSectionRef = useRef();
-  const photoRef = useRef();
-  const infoHeaderRef = useRef();
-
-  //top headers
-  const introHeaderRef = useRef();
-  //for the left side
-
+  const aboutRef = useRef();
   useGSAP(() => {
     const isMobile = window.innerWidth <= 500; // Define mobile screen width (you can adjust)
     if (!isMobile) {
@@ -116,6 +107,9 @@ export default function Intro() {
         </div>
       </div>
       <IntroductionTransition />
+      <div ref={aboutRef}>
+        <About />
+      </div>
     </MuiThemeProvider>
   );
 }

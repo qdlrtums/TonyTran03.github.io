@@ -2,37 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
-  font-family: 'CustomFont';
-  src: url('/fonts/Casta-Thin.otf') format('opentype');
+  font-family: "CustomFont";
+  src: url("/fonts/Casta-Thin.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'CustomFont';
-  src: url('/fonts/Casta-ThinSlanted.otf') format('opentype');
+  font-family: "CustomFont";
+  src: url("/fonts/Casta-ThinSlanted.otf") format("opentype");
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'shanders';
-  src: url('/fonts/Shanders.otf') format('opentype');
+  font-family: "shanders";
+  src: url("/fonts/Shanders.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 
 body.lock-scroll {
   overflow: hidden;
- 
 }
 
 @layer base {
   :root {
     --background: 60, 100%, 100%;
     --cookies: rgb(255, 255, 253); /* Light mode value */
+    --iNeedDark: rgb(52, 52, 74);
+    --iNeedGreen: rgb(207, 235, 223);
     --contentColor: #7a6fdf; /* Light mode value */
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -60,12 +60,13 @@ body.lock-scroll {
     --chart-5: 27 87% 67%;
   }
 
-  [data-mode="night"]  {
-    --background: 242 100% 10%;  /* changes the background that layers text */
+  [data-mode="night"] {
+    --background: 242 100% 10%; /* changes the background that layers text */
     --foreground: 210 40% 98%;
     --contentColor: rgb(112, 112, 112); /* Light mode value */
     --card: 222.2 84% 4.9%;
-    --cookies: rgb(41, 36, 36); 
+    --cookies: rgb(41, 36, 36);
+
     --contentColor: #ec5e14; /* Light mode value */
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
@@ -89,7 +90,6 @@ body.lock-scroll {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-
 }
 
 @layer base {
@@ -98,11 +98,9 @@ body.lock-scroll {
   }
   body {
     @apply bg-background text-foreground;
-      font-family: 'Poppins', sans-serif;
-      font-family: 'eb-garamond', serif;
-      font-family: 'Bebas Neue', sans-serif;
-      
-    
+    font-family: "Poppins", sans-serif;
+    font-family: "eb-garamond", serif;
+    font-family: "Bebas Neue", sans-serif;
   }
 }
 
@@ -113,5 +111,3 @@ body.lock-scroll {
 .dock-icon:hover {
   transform: scale(1.2); /* Adjust the scale to your preference */
 }
-
-
