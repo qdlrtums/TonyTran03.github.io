@@ -12,14 +12,11 @@ import Meteors from "../components/magicui/meteors";
 import { useTheme } from "../components/ThemeContext.jsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 import "@fontsource/bebas-neue";
-
 import { useGSAP } from "@gsap/react";
+import IntroductionTransition from "./IntroductionTransition.jsx";
 
 import "./intro.css";
-import IntroductionTransition from "./IntroductionTransition.jsx";
-import About from "./About.jsx";
 
 const muiTheme = createTheme({
   typography: {
@@ -27,38 +24,48 @@ const muiTheme = createTheme({
   },
 });
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Intro() {
   const refName = useRef();
-
   const aboutRef = useRef();
+  const introSectionRef = useRef(); // Ref for the entire intro section
+
   useGSAP(() => {
-    const isMobile = window.innerWidth <= 500; // Define mobile screen width (you can adjust)
+    const isMobile = window.innerWidth <= 500;
     if (!isMobile) {
-      // GSAP animations for desktop
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: refName.current,
-          start: "top top+=50%",
-          end: "bottom top",
+          trigger: introSectionRef.current,
+          start: "top top",
+          end: "bottom+=30% center+=10%",
           scrub: true,
-          pin: true, // Pin for desktop only
+          pin: refName.current,
           markers: false,
         },
       });
 
       tl.fromTo(
         refName.current,
-        { opacity: 1, y: -100 },
+        { opacity: 1, y: 0 },
         { opacity: 0, y: -200, duration: 1, ease: "power1.inOut" }
       );
     }
+  }, []);
+
+  useEffect(() => {
+    // Trigger ScrollTrigger refresh to recalculate after all content is rendered
+    ScrollTrigger.refresh();
   }, []);
 
   const { isDayMode } = useTheme();
 
   return (
     <MuiThemeProvider theme={muiTheme}>
-      <div className="flex flex-col lg:flex-row min-h-screen shadow-sm">
+      <div
+        ref={introSectionRef}
+        className="flex flex-col lg:flex-row min-h-screen shadow-sm"
+      >
         <div className="absolute w-full h-screen bg-[var(--cookies)] z-10">
           {isDayMode ? (
             <Particles
@@ -106,10 +113,8 @@ export default function Intro() {
           </div>
         </div>
       </div>
+      {/* Ensure IntroductionTransition fills the space */}
       <IntroductionTransition />
-      <div ref={aboutRef}>
-        <About />
-      </div>
     </MuiThemeProvider>
   );
 }

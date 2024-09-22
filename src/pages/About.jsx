@@ -31,7 +31,7 @@ export default function About() {
       >
         <div
           ref={boxRef}
-          className="containerr flex rounded-sm justify-center items-center shadow-sm"
+          className="containerr flex rounded-sm justify-center items-center shadow-lg"
         >
           hi
         </div>
