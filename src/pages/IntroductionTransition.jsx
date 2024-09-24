@@ -13,6 +13,7 @@ export default function IntroductionTransition() {
   const aboutRef = useRef(); // Ref for About component
   const [textWidth, setTextWidth] = useState(0);
 
+  const arrowRef = useRef();
   useEffect(() => {
     if (textContainerRef.current) {
       setTextWidth(textContainerRef.current.getBoundingClientRect().width);
@@ -68,7 +69,16 @@ export default function IntroductionTransition() {
           ease: "power1.inOut",
           duration: 1,
         }
-      );
+      )
+      .fromTo(
+        arrowRef.current,
+        {
+          y: -10,
+          opacity: 0,
+        },
+        { y: 10, repeat: 1, opacity: 1, ease: "power1.inOut" }
+      ),
+      ">0.05";
   }, []);
 
   const text = "INTRODUCTION";
@@ -92,6 +102,7 @@ export default function IntroductionTransition() {
             sx={{
               fontFamily: "Poppins",
               fontSize: "5vw",
+              marginTop: "3rem",
             }}
           >
             {text.split("").map((letter, index) => (
@@ -124,6 +135,14 @@ export default function IntroductionTransition() {
               fill="none"
             />
           </svg>
+
+          {/*my arrow*/}
+          <div
+            ref={arrowRef}
+            className=" flex justify-center items-center bottom-0"
+          >
+            <img alt="hi" src="/website_photo/Group 2.svg" />
+          </div>
         </div>
 
         {/* About Component */}
