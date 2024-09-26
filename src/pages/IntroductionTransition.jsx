@@ -12,6 +12,7 @@ export default function IntroductionTransition() {
   const boxRef = useRef(); // Ref for the new box element
   const [textWidth, setTextWidth] = useState(0);
 
+  const arrowRef = useRef();
   useEffect(() => {
     if (textContainerRef.current) {
       setTextWidth(textContainerRef.current.getBoundingClientRect().width);
@@ -92,6 +93,7 @@ export default function IntroductionTransition() {
             sx={{
               fontFamily: "Poppins",
               fontSize: "5vw",
+              marginTop: "3rem",
             }}
           >
             {text.split("").map((letter, index) => (
@@ -124,6 +126,14 @@ export default function IntroductionTransition() {
               fill="none"
             />
           </svg>
+
+          {/*my arrow*/}
+          <div
+            ref={arrowRef}
+            className=" flex justify-center items-center bottom-0"
+          >
+            <img alt="hi" src="/website_photo/Group 2.svg" />
+          </div>
         </div>
 
         <div
