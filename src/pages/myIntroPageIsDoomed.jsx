@@ -23,9 +23,9 @@ import { BorderBeam } from "../components/magicui/border-beam.jsx";
 import "./intro.css";
 import cat1 from "/cat1.svg";
 import MeteorText from "../components/magicui/MeteorText.jsx";
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
 
 const muiTheme = createTheme({
   typography: {
@@ -34,7 +34,6 @@ const muiTheme = createTheme({
 });
 
 export default function Intro() {
-
   const refName = useRef();
 
   const aboutMeTextRef = useRef();
@@ -43,19 +42,17 @@ export default function Intro() {
   const photoRef = useRef();
   const infoHeaderRef = useRef();
 
-
   const panelRef = useRef(); // Ref for the panel that will come up
   const meteorRef = useRef();
-  
 
-//top headers
-const introHeaderRef = useRef();
+  //top headers
+  const introHeaderRef = useRef();
   //for the left side
 
   const infoBarRef = useRef();
   const roleRef = useRef();
-  const infoWordRef = useRef(); 
-  
+  const infoWordRef = useRef();
+
   useGSAP(() => {
     const isMobile = window.innerWidth <= 500; // Define mobile screen width (you can adjust)
     if (!isMobile) {
@@ -81,7 +78,7 @@ const introHeaderRef = useRef();
         scrollTrigger: {
           trigger: aboutMeTextContainerRef.current,
           start: "top+=50% 70%",
-         end: "bottom bottom",
+          end: "bottom bottom",
           pin: introHeaderRef.current,
           scrub: true,
           markers: true,
@@ -97,13 +94,15 @@ const introHeaderRef = useRef();
         .fromTo(
           photoRef.current,
           { opacity: 0 },
-          { opacity: 1, duration: 1, ease: "power1.in" },
-          
-        ).fromTo(infoHeaderRef.current,
+          { opacity: 1, duration: 1, ease: "power1.in" }
+        )
+        .fromTo(
+          infoHeaderRef.current,
 
-          {opacity:0, y : "25px"},
-          {opacity:1, y : "0px", duration:10,  ease: "power1.inOut"}
-        ),"<0.5"
+          { opacity: 0, y: "25px" },
+          { opacity: 1, y: "0px", duration: 10, ease: "power1.inOut" }
+        ),
+        "<0.5";
 
       const tl3 = gsap.timeline({
         scrollTrigger: {
@@ -117,11 +116,6 @@ const introHeaderRef = useRef();
         },
       });
       tl3.to(catSectionRef.current, { opacity: 1 });
-
-
-
-      
-
     }
   }, []);
 
@@ -180,16 +174,17 @@ const introHeaderRef = useRef();
 
       {/* About Section */}
       <div className="h-screen flex flex-col justify-center bg-[var(--cookies)] z-0">
-
-            
         <div
           ref={aboutMeTextContainerRef}
           className="flex  h-screen flex-col justify-start sm:justify-center relative bg-[var(--cookies)] p-7"
         >
           {/** The word-popup*/}
-          
-          <div ref={infoHeaderRef} className="flex flex-1 top-0 left-0 bg-white">
-          <Typography
+
+          <div
+            ref={infoHeaderRef}
+            className="flex flex-1 top-0 left-0 bg-white"
+          >
+            <Typography
               sx={{
                 fontFamily: "Poppins, sans-serif",
                 fontStyle: "italic",
@@ -206,14 +201,9 @@ const introHeaderRef = useRef();
             >
               Introduction
             </Typography>
-
           </div>
 
           <div ref={aboutMeTextRef}>
-      
-
-
-
             {/** Role Row */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center mb-4 ">
               <Typography
@@ -310,13 +300,9 @@ const introHeaderRef = useRef();
             />
           </div>
         </div>
-
-
       </div>
 
-      <div className="h-screen">
-hi
-        </div>
+      <div className="h-screen">hi</div>
     </MuiThemeProvider>
   );
 }

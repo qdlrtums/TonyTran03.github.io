@@ -1,11 +1,10 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import Lenis from '@studio-freight/lenis';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
+import Lenis from "@studio-freight/lenis";
 
-import { ThemeProvider } from './components/ThemeContext.jsx'; // Import the ThemeProvider
-
+import { ThemeProvider } from "./components/ThemeContext.jsx";
 const lenis = new Lenis({
   duration: 1.2, // The duration of the smooth scroll
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing function for the scroll
@@ -18,10 +17,10 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf);
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ThemeProvider>
-    <App />
+      <App />
     </ThemeProvider>
-  </StrictMode>,
-)
+  </StrictMode>
+);

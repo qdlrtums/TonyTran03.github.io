@@ -3,8 +3,11 @@ import React, { useRef, useEffect, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import Particles from "../components/magicui/particles";
 import { Typography } from "@mui/material";
+import "./about.css";
+import { useTheme } from "../components/ThemeContext.jsx";
 
 export default function IntroductionTransition() {
+  const { isDayMode } = useTheme();
   const introHeaderRef = useRef();
   const lettersRef = useRef([]);
   const diamondRef = useRef();
@@ -12,7 +15,7 @@ export default function IntroductionTransition() {
   const boxRef = useRef(); // Ref for the new box element
   const [textWidth, setTextWidth] = useState(0);
 
-  const arrowRef = useRef();
+  const isMobile = () => window.innerWidth <= 768;
   useEffect(() => {
     if (textContainerRef.current) {
       setTextWidth(textContainerRef.current.getBoundingClientRect().width);
@@ -58,8 +61,11 @@ export default function IntroductionTransition() {
           duration: 1.25,
         },
         0
-      )
-      .fromTo(
+      );
+
+    if (!isMobile()) {
+      // Apply scaling animation only for desktop
+      timeline.fromTo(
         boxRef.current,
         { opacity: 0, scale: 0 },
         {
@@ -70,6 +76,19 @@ export default function IntroductionTransition() {
         },
         "-=0.5" // Adjust timing to synchronize with other animations
       );
+    } else {
+      // For mobile, only apply opacity change, no scaling
+      timeline.fromTo(
+        boxRef.current,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          ease: "power1.inOut",
+          duration: 1,
+        },
+        "-=0.5" // Adjust timing to synchronize with other animations
+      );
+    }
   }, []);
 
   const text = "INTRODUCTION";
@@ -115,8 +134,8 @@ export default function IntroductionTransition() {
             fill="none"
             viewBox="0 0 100 100"
             style={{
-              width: `${textWidth * 1.25}px`,
-              height: `${textWidth * 1.25}px`,
+              width: `${textWidth * 0.8}px`, // Adjust the size to make it smaller
+              height: `${textWidth * 0.8}px`,
             }}
           >
             <path
@@ -124,26 +143,36 @@ export default function IntroductionTransition() {
               stroke="black"
               strokeWidth="0.5"
               fill="none"
+              opacity="0.1" // Reduce opacity to make it less prominent
             />
           </svg>
-
-          {/*my arrow*/}
-          <div
-            ref={arrowRef}
-            className=" flex justify-center items-center bottom-0"
-          >
-            <img alt="hi" src="/website_photo/Group 2.svg" />
-          </div>
         </div>
 
         <div
           ref={boxRef}
-          className="containerr absolute  flex-col items-center justify-center  rounded-sm shadow-lg bg-white"
+          className="containerr absolute flex-col items-center justify-center rounded-sm shadow-lg bg-white p-6"
         >
+          {/* Photo of yourself */}
+          <div className="mb-4">
+            <img
+              src="/website_photo/selfie_1.jpg" // Adjust the path for the photo
+              alt="Tony"
+              className="rounded-full w-48 h-48 object-cover mx-auto zoom-photo"
+            />
+          </div>
+          <style jsx>{`
+            .zoom-photo {
+              transition: transform 0.3s ease-in-out; /* Smooth transition */
+            }
+
+            .zoom-photo:hover {
+              transform: scale(1.1); /* Zoom in on hover */
+            }
+          `}</style>
           {/* Introduction or Summary */}
           <div className="text-center mb-4">
             <h2 className="text-2xl font-bold">About Me</h2>
-            <p className="text-sm mt-2">
+            <p className="text-lg mt-2">
               Hi, I'm Tony Tran, a passionate software developer with expertise
               in web and mobile development, machine learning, and data science.
             </p>
@@ -152,7 +181,7 @@ export default function IntroductionTransition() {
           {/* Skills */}
           <div className="text-center mb-4">
             <h3 className="text-lg font-semibold">Skills</h3>
-            <ul className="list-disc list-inside text-sm mt-2">
+            <ul className="list-disc list-inside text-lg mt-2">
               <li>JavaScript (React, Node.js)</li>
               <li>Python (Pandas, NumPy, Scikit-learn)</li>
               <li>Mobile Development (Flutter, React Native)</li>
@@ -163,18 +192,16 @@ export default function IntroductionTransition() {
           {/* Experience */}
           <div className="text-center mb-4">
             <h3 className="text-lg font-semibold">Experience</h3>
-            <p className="text-sm mt-2">
+            <p className="text-lg mt-2">
               Software Developer at XYZ Corp <br />
-              Mobile Developer at Oriole AI <br />
-              Data Science Intern at SunLife
             </p>
           </div>
 
           {/* Education */}
           <div className="text-center mb-4">
             <h3 className="text-lg font-semibold">Education</h3>
-            <p className="text-sm mt-2">
-              B.Sc. in Mathematical Sciences (Statistics) <br />
+            <p className="text-lg mt-2">
+              B.Math. in Mathematical Sciences (Statistics) <br />
               University of Guelph
             </p>
           </div>
@@ -182,23 +209,13 @@ export default function IntroductionTransition() {
           {/* Contact Information */}
           <div className="text-center">
             <h3 className="text-lg font-semibold">Contact</h3>
-            <p className="text-sm mt-2">
+            <p className="text-lg mt-2">
               Email: tony.tran03@hotmail.com <br />
               LinkedIn: https://www.linkedin.com/in/tony-tran-a08b8a230/
             </p>
           </div>
         </div>
       </div>
-
-      {/* CSS for responsiveness and positioning */}
-      <style jsx>{`
-        .diamond-svg {
-          position: absolute;
-          top: 50%;
-          left: -12%;
-          transform: translate(0%, -50%);
-        }
-      `}</style>
     </>
   );
 }

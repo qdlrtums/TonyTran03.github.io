@@ -28,8 +28,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Intro() {
   const refName = useRef();
-  const aboutRef = useRef();
-  const introSectionRef = useRef(); // Ref for the entire intro section
+  const introSectionRef = useRef();
 
   useGSAP(() => {
     const isMobile = window.innerWidth <= 500;
