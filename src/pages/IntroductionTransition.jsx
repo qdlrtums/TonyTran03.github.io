@@ -3,14 +3,13 @@ import React, { useRef, useEffect, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import Particles from "../components/magicui/particles";
 import { Typography } from "@mui/material";
-import About from "./About"; // Adjust the import path as necessary
 
 export default function IntroductionTransition() {
   const introHeaderRef = useRef();
   const lettersRef = useRef([]);
   const diamondRef = useRef();
   const textContainerRef = useRef();
-  const aboutRef = useRef(); // Ref for About component
+  const boxRef = useRef(); // Ref for the new box element
   const [textWidth, setTextWidth] = useState(0);
 
   useEffect(() => {
@@ -60,14 +59,15 @@ export default function IntroductionTransition() {
         0
       )
       .fromTo(
-        aboutRef.current,
-        { yPercent: 100, opacity: 0 },
+        boxRef.current,
+        { opacity: 0, scale: 0 },
         {
-          yPercent: 50,
           opacity: 1,
+          scale: 1,
           ease: "power1.inOut",
           duration: 1,
-        }
+        },
+        "-=0.5" // Adjust timing to synchronize with other animations
       );
   }, []);
 
@@ -80,7 +80,7 @@ export default function IntroductionTransition() {
         className="flex bg-[var(--cookies)] h-screen justify-center items-center relative"
       >
         <Particles
-          className="absolute w-full h-100vh]"
+          className="absolute w-full h-[100vh]"
           quantity={25}
           ease={80}
           color={"#181818"}
@@ -108,7 +108,7 @@ export default function IntroductionTransition() {
           {/* SVG Diamond */}
           <svg
             ref={diamondRef}
-            className="diamond-svg"
+            className="diamond-svg flex"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 100 100"
@@ -126,9 +126,57 @@ export default function IntroductionTransition() {
           </svg>
         </div>
 
-        {/* About Component */}
-        <div ref={aboutRef} className="about-container">
-          <About />
+        <div
+          ref={boxRef}
+          className="containerr absolute  flex-col items-center justify-center  rounded-sm shadow-lg bg-white"
+        >
+          {/* Introduction or Summary */}
+          <div className="text-center mb-4">
+            <h2 className="text-2xl font-bold">About Me</h2>
+            <p className="text-sm mt-2">
+              Hi, I'm Tony Tran, a passionate software developer with expertise
+              in web and mobile development, machine learning, and data science.
+            </p>
+          </div>
+
+          {/* Skills */}
+          <div className="text-center mb-4">
+            <h3 className="text-lg font-semibold">Skills</h3>
+            <ul className="list-disc list-inside text-sm mt-2">
+              <li>JavaScript (React, Node.js)</li>
+              <li>Python (Pandas, NumPy, Scikit-learn)</li>
+              <li>Mobile Development (Flutter, React Native)</li>
+              <li>Data Science & Machine Learning</li>
+            </ul>
+          </div>
+
+          {/* Experience */}
+          <div className="text-center mb-4">
+            <h3 className="text-lg font-semibold">Experience</h3>
+            <p className="text-sm mt-2">
+              Software Developer at XYZ Corp <br />
+              Mobile Developer at Oriole AI <br />
+              Data Science Intern at SunLife
+            </p>
+          </div>
+
+          {/* Education */}
+          <div className="text-center mb-4">
+            <h3 className="text-lg font-semibold">Education</h3>
+            <p className="text-sm mt-2">
+              B.Sc. in Mathematical Sciences (Statistics) <br />
+              University of Guelph
+            </p>
+          </div>
+
+          {/* Contact Information */}
+          <div className="text-center">
+            <h3 className="text-lg font-semibold">Contact</h3>
+            <p className="text-sm mt-2">
+              Email: tony.tran03@hotmail.com <br />
+              LinkedIn: https://www.linkedin.com/in/tony-tran-a08b8a230/
+            </p>
+          </div>
         </div>
       </div>
 
@@ -137,13 +185,8 @@ export default function IntroductionTransition() {
         .diamond-svg {
           position: absolute;
           top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-        .about-container {
-          position: absolute;
-          bottom: -100%;
-          width: 100%;
+          left: -12%;
+          transform: translate(0%, -50%);
         }
       `}</style>
     </>
