@@ -63,6 +63,25 @@ export default function IntroductionTransition() {
         0
       );
 
+    let screenSize = { lg: 1, md: 0.7, sm: 0.4 };
+
+    // Function to detect screen size based on width
+    const getScreenScale = () => {
+      const width = window.innerWidth;
+
+      if (width <= 768) {
+        // Small screens, like mobile
+        return screenSize.sm;
+      } else if (width <= 1280) {
+        // Medium screens, like 13-inch laptops
+        return screenSize.md;
+      } else {
+        // Large screens
+        return screenSize.lg;
+      }
+    };
+
+    const screenScale = getScreenScale();
     if (!isMobile()) {
       // Apply scaling animation only for desktop
       timeline.fromTo(
@@ -70,7 +89,7 @@ export default function IntroductionTransition() {
         { opacity: 0, scale: 0 },
         {
           opacity: 1,
-          scale: 1,
+          scale: screenScale,
           ease: "power1.inOut",
           duration: 1,
         },

@@ -17,6 +17,7 @@ import { useGSAP } from "@gsap/react";
 import IntroductionTransition from "./IntroductionTransition.jsx";
 
 import "./intro.css";
+import Project from "./Project.jsx";
 
 const muiTheme = createTheme({
   typography: {
@@ -114,6 +115,7 @@ export default function Intro() {
       </div>
       {/* Ensure IntroductionTransition fills the space */}
       <IntroductionTransition />
+      <Project />
     </MuiThemeProvider>
   );
 }
