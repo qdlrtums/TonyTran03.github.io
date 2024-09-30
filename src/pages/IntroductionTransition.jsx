@@ -111,7 +111,7 @@ export default function IntroductionTransition() {
   }, []);
 
   const text = "INTRODUCTION";
-
+  let strokeColor = isDayMode ? "black" : "white";
   return (
     <>
       <div
@@ -144,8 +144,8 @@ export default function IntroductionTransition() {
               </span>
             ))}
           </Typography>
-
           {/* SVG Diamond */}
+
           <svg
             ref={diamondRef}
             className="diamond-svg flex"
@@ -159,7 +159,7 @@ export default function IntroductionTransition() {
           >
             <path
               d="M50 0 L100 50 L50 100 L0 50 Z"
-              stroke="black"
+              stroke={strokeColor}
               strokeWidth="0.5"
               fill="none"
               opacity="0.1" // Reduce opacity to make it less prominent
