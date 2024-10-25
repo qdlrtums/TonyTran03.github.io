@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import Lenis from "@studio-freight/lenis";
 
-import { ThemeProvider } from "./components/ThemeContext.js";
+import { ThemeProvider } from "./components/ThemeContext.jsx";
 const lenis = new Lenis({
   duration: 1.2, // The duration of the smooth scroll
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing function for the scroll
