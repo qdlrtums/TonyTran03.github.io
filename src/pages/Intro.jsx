@@ -8,7 +8,7 @@ import {
 import WordPullUp from "../components/magicui/word-pull-up";
 import Particles from "../components/magicui/particles";
 import { DockBar } from "../components/DockBar";
-import Meteors from "../components/magicui/meteors";
+import Meteors from "../components/magicui/Meteors";
 import { useTheme } from "../components/ThemeContext.jsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
