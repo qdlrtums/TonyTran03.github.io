@@ -1,13 +1,7 @@
+import "@/App.css";
 
-import '@/App.css'
-
-import TextReveal from "../components/magicui/text-reveal";
-import Meteors from '../components/magicui/meteors'
 import IconCloud from "@/components/magicui/icon-cloud";
-import WordPullUp from '../components/magicui/word-pull-up';
-
-import Typography from '@mui/material/Typography';
-import '@fontsource/poppins';
+import "@fontsource/poppins";
 
 const slugs = [
   "typescript",
@@ -25,7 +19,7 @@ const slugs = [
   "visualstudiocode",
   "figma",
   "next.js",
-  "mongodb"
+  "mongodb",
 ];
 export function IconCloudDemo() {
   return (
@@ -35,20 +29,12 @@ export function IconCloudDemo() {
   );
 }
 
-
 function Data() {
-  
-
   return (
-<>
-
- 
-
-        <IconCloudDemo/>  
-
-
-</>
-  )
+    <>
+      <IconCloudDemo />
+    </>
+  );
 }
 
-export default Data
+export default Data;

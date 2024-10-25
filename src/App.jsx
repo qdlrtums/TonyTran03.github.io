@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import Software from './pages/Software';
-import Intro from './pages/Intro';
-
+import React, { useEffect } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Intro from "./pages/Intro";
 
 // Lerp function to smooth the transition
 const lerp = (start, end, factor) => {
@@ -13,12 +10,15 @@ const lerp = (start, end, factor) => {
 
 function App() {
   useEffect(() => {
-    const cursorInner = document.querySelector('.cursor-inner');
-    const cursorOuter = document.querySelector('.cursor-outer');
+    const cursorInner = document.querySelector(".cursor-inner");
+    const cursorOuter = document.querySelector(".cursor-outer");
 
     if (!cursorInner || !cursorOuter) return;
 
-    let mouseX = 0, mouseY = 0, posX = 0, posY = 0;
+    let mouseX = 0,
+      mouseY = 0,
+      posX = 0,
+      posY = 0;
 
     const handleMouseMove = (e) => {
       mouseX = e.clientX;
@@ -37,28 +37,25 @@ function App() {
       requestAnimationFrame(followCursor);
     };
 
-    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener("mousemove", handleMouseMove);
     followCursor();
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
   return (
     <Router>
-    <div>
-      <div className="cursor">
-        <div className="cursor-inner"></div>
-        <div className="cursor-outer"></div>
+      <div>
+        <div className="cursor">
+          <div className="cursor-inner"></div>
+          <div className="cursor-outer"></div>
+        </div>
+        <Routes>
+          <Route index element={<Intro />} />
+        </Routes>
       </div>
-     <Routes>
-
-    
-      <Route index element={<Intro/>} />
- 
-      </Routes>
-    </div>
     </Router>
   );
 }
