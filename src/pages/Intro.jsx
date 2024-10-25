@@ -16,7 +16,7 @@ import "@fontsource/bebas-neue";
 import { useGSAP } from "@gsap/react";
 import IntroductionTransition from "./IntroductionTransition.jsx";
 
-import "./intro.css";
+import "./Intro.css";
 import Project from "./Project.jsx";
 
 const muiTheme = createTheme({
