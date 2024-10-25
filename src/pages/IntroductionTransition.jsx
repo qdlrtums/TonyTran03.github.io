@@ -12,10 +12,11 @@ export default function IntroductionTransition() {
   const lettersRef = useRef([]);
   const diamondRef = useRef();
   const textContainerRef = useRef();
-  const boxRef = useRef(); // Ref for the new box element
+  const boxRef = useRef();
   const [textWidth, setTextWidth] = useState(0);
 
   const isMobile = () => window.innerWidth <= 768;
+
   useEffect(() => {
     if (textContainerRef.current) {
       setTextWidth(textContainerRef.current.getBoundingClientRect().width);
@@ -34,10 +35,10 @@ export default function IntroductionTransition() {
       scrollTrigger: {
         trigger: introHeaderRef.current,
         start: "top top",
-        end: "+=100%", // Adjusted end position
+        end: "+=100%",
         pin: true,
         scrub: true,
-        markers: true, // Enable markers for debugging
+        markers: true,
       },
     });
 
@@ -65,25 +66,20 @@ export default function IntroductionTransition() {
 
     let screenSize = { lg: 1, md: 0.7, sm: 0.4 };
 
-    // Function to detect screen size based on width
     const getScreenScale = () => {
       const width = window.innerWidth;
 
       if (width <= 768) {
-        // Small screens, like mobile
         return screenSize.sm;
       } else if (width <= 1280) {
-        // Medium screens, like 13-inch laptops
         return screenSize.md;
       } else {
-        // Large screens
         return screenSize.lg;
       }
     };
 
     const screenScale = getScreenScale();
     if (!isMobile()) {
-      // Apply scaling animation only for desktop
       timeline.fromTo(
         boxRef.current,
         { opacity: 0, scale: 0 },
@@ -93,10 +89,9 @@ export default function IntroductionTransition() {
           ease: "power1.inOut",
           duration: 1,
         },
-        "-=0.5" // Adjust timing to synchronize with other animations
+        "-=0.5"
       );
     } else {
-      // For mobile, only apply opacity change, no scaling
       timeline.fromTo(
         boxRef.current,
         { opacity: 0 },
@@ -105,13 +100,29 @@ export default function IntroductionTransition() {
           ease: "power1.inOut",
           duration: 1,
         },
-        "-=0.5" // Adjust timing to synchronize with other animations
+        "-=0.5"
       );
     }
   }, []);
 
   const text = "INTRODUCTION";
-  let strokeColor = isDayMode ? "black" : "white";
+
+  // Dynamic styles based on day or night mode
+  const boxStyle = {
+    maxWidth: "85%",
+    padding: "3rem",
+    transform: "translateY(50px)",
+    borderRadius: "20px",
+    boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
+    backgroundColor: isDayMode ? "#fff" : "#2a2a2a", // Light for day, dark for night
+    color: isDayMode ? "#333" : "#f0f0f0", // Text colors: dark for day, light for night
+  };
+
+  const linkColor = isDayMode ? "text-blue-500" : "text-blue-300"; // Slightly lighter in dark mode
+  const textColor = isDayMode ? "text-gray-700" : "text-gray-300"; // Text color adjustment
+  const headingColor = isDayMode ? "text-black" : "text-white"; // Headings for contrast in both modes
+
+  let strokeColor = isDayMode ? "black" : "white"; // Stroke color for SVG diamond
   return (
     <>
       <div
@@ -132,6 +143,7 @@ export default function IntroductionTransition() {
               fontFamily: "Poppins",
               fontSize: "5vw",
               marginTop: "3rem",
+              color: isDayMode ? "#000" : "#fff", // Title color based on mode
             }}
           >
             {text.split("").map((letter, index) => (
@@ -144,7 +156,6 @@ export default function IntroductionTransition() {
               </span>
             ))}
           </Typography>
-          {/* SVG Diamond */}
 
           <svg
             ref={diamondRef}
@@ -153,7 +164,7 @@ export default function IntroductionTransition() {
             fill="none"
             viewBox="0 0 100 100"
             style={{
-              width: `${textWidth * 0.8}px`, // Adjust the size to make it smaller
+              width: `${textWidth * 0.8}px`,
               height: `${textWidth * 0.8}px`,
             }}
           >
@@ -162,75 +173,68 @@ export default function IntroductionTransition() {
               stroke={strokeColor}
               strokeWidth="0.5"
               fill="none"
-              opacity="0.1" // Reduce opacity to make it less prominent
+              opacity="0.1"
             />
           </svg>
         </div>
 
+        {/* Updated Box Content */}
         <div
           ref={boxRef}
-          className="containerr absolute flex-col items-center justify-center rounded-sm shadow-lg bg-white p-6"
+          className="absolute flex-col items-center justify-center rounded-lg shadow-xl mx-auto text-center"
+          style={boxStyle}
         >
-          {/* Photo of yourself */}
-          <div className="mb-4">
-            <img
-              src="/website_photo/selfie_1.jpg" // Adjust the path for the photo
-              alt="Tony"
-              className="rounded-full w-48 h-48 object-cover mx-auto zoom-photo"
-            />
+          <img
+            src="/website_photo/selfie_1.jpg"
+            alt="Tony"
+            className="rounded-full w-40 h-40 object-cover mx-auto mb-4"
+          />
+          <div className={`text-xl font-bold mb-2 ${headingColor}`}>
+            Tony Tran
           </div>
-          <style jsx>{`
-            .zoom-photo {
-              transition: transform 0.3s ease-in-out; /* Smooth transition */
-            }
+          <p className={`${textColor} mb-4 text-base leading-relaxed`}>
+            I'm Tony Tran, a passionate developer specializing in web and mobile
+            applications. My expertise spans machine learning, data science, and
+            statistical modeling. I thrive on turning data into actionable
+            insights.
+          </p>
 
-            .zoom-photo:hover {
-              transform: scale(1.1); /* Zoom in on hover */
-            }
-          `}</style>
-          {/* Introduction or Summary */}
-          <div className="text-center mb-4">
-            <h2 className="text-2xl font-bold">About Me</h2>
-            <p className="text-lg mt-2">
-              Hi, I'm Tony Tran, a passionate software developer with expertise
-              in web and mobile development, machine learning, and data science.
-            </p>
-          </div>
-
-          {/* Skills */}
-          <div className="text-center mb-4">
-            <h3 className="text-lg font-semibold">Skills</h3>
-            <ul className="list-disc list-inside text-lg mt-2">
+          <div className={`text-left mb-4 ${headingColor}`}>
+            <h3 className="text-lg font-semibold">Key Skills</h3>
+            <ul className={`list-disc list-inside ${textColor}`}>
+              <li>
+                Data Science & Machine Learning (TensorFlow, Scikit-learn)
+              </li>
+              <li>Statistical Analysis & Modeling (Pandas, NumPy, R)</li>
               <li>JavaScript (React, Node.js)</li>
-              <li>Python (Pandas, NumPy, Scikit-learn)</li>
               <li>Mobile Development (Flutter, React Native)</li>
-              <li>Data Science & Machine Learning</li>
             </ul>
           </div>
 
-          {/* Experience */}
-          <div className="text-center mb-4">
+          <div className={`text-left mb-4 ${headingColor}`}>
             <h3 className="text-lg font-semibold">Experience</h3>
-            <p className="text-lg mt-2">
-              Software Developer at XYZ Corp <br />
-            </p>
+            <p>Software Developer at XYZ Corp</p>
           </div>
 
-          {/* Education */}
-          <div className="text-center mb-4">
+          <div className={`text-left mb-4 ${headingColor}`}>
             <h3 className="text-lg font-semibold">Education</h3>
-            <p className="text-lg mt-2">
-              B.Math. in Mathematical Sciences (Statistics) <br />
-              University of Guelph
-            </p>
+            <p>B.Math. in Mathematical Sciences (Statistics)</p>
+            <p>University of Guelph</p>
           </div>
 
-          {/* Contact Information */}
-          <div className="text-center">
+          <div className={`text-left ${headingColor}`}>
             <h3 className="text-lg font-semibold">Contact</h3>
-            <p className="text-lg mt-2">
-              Email: tony.tran03@hotmail.com <br />
-              LinkedIn: https://www.linkedin.com/in/tony-tran-a08b8a230/
+            <p>Email: tony.tran03@hotmail.com</p>
+            <p>
+              LinkedIn:{" "}
+              <a
+                href="https://www.linkedin.com/in/tony-tran-a08b8a230/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkColor}
+              >
+                tony-tran-a08b8a230
+              </a>
             </p>
           </div>
         </div>
