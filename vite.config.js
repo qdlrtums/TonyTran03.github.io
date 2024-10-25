@@ -1,16 +1,14 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import path from "path";
-// https://vitejs.dev/config/
+
 export default defineConfig({
   plugins: [react()],
-  base: "/second_site/",
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": "/src",
     },
-    build: {
-      outDir: "dist", // Make sure this matches your build folder
-    },
+  },
+  esbuild: {
+    jsx: "automatic", // Or use 'react-jsx' if needed
   },
 });
