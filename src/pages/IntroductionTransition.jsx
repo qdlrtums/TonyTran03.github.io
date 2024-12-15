@@ -39,6 +39,7 @@ export default function IntroductionTransition() {
         pin: true,
         scrub: true,
         markers: false,
+        markers: false,
       },
     });
 
@@ -181,7 +182,7 @@ export default function IntroductionTransition() {
         {/* Updated Box Content */}
         <div
           ref={boxRef}
-          className="absolute flex-col items-center justify-center rounded-lg shadow-xl mx-auto text-center"
+          className="absolute mb-6 flex-col items-right justify-right rounded-lg shadow-xl mx-auto text-center"
           style={boxStyle}
         >
           <img
