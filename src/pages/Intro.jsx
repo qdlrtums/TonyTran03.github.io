@@ -79,8 +79,11 @@ export default function Intro() {
             <Meteors number={45} />
           )}
 
-          <div className="flex flex-1 justify-center items-center h-full">
-            <div ref={refName} className="flex flex-col">
+          <div
+            ref={refName}
+            className="flex flex-col justify-center items-center h-full w-full"
+          >
+            <div className="flex justify-center w-full items-center">
               <Typography
                 sx={{
                   ml: 2,
@@ -96,17 +99,19 @@ export default function Intro() {
               >
                 <WordPullUp words={"Tony Tran"} />
               </Typography>
+            </div>
 
+            <div className="flex flex-col justify-center w-full items-center">
               <Typography
                 sx={{
                   ml: 4,
-                  mt: 3,
+
                   fontSize: "2rem",
                   fontFamily: "CustomFont, sans-serif",
                   fontStyle: "italic",
                 }}
               >
-                Software Engineer | Data Scientist
+                Software Developer
               </Typography>
               <DockBar />
             </div>
