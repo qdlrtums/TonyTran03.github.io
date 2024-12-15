@@ -53,7 +53,7 @@ export default function Projects() {
       description:
         "Developed a centralized charity resource database that streamlined inter-charity collaboration. (Submission for Hack the 6ix 2024) ",
       image: "/website_photo/projectphoto/heart.jpg",
-      githubUrl: "https://github.com/TonyTran03/heart", // GitHub URL
+      githubUrl: "https://github.com/TonyTran03/Sharity", // GitHub URL
     },
     {
       title:

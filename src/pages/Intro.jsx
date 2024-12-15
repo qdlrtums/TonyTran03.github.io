@@ -106,7 +106,7 @@ export default function Intro() {
                   fontStyle: "italic",
                 }}
               >
-                Aspiring Data Scientist
+                Software Engineer | Data Scientist
               </Typography>
               <DockBar />
             </div>

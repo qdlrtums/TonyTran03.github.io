@@ -15,7 +15,7 @@ export default function About() {
         pin: true,
         scrub: true,
         markers: {
-          visible: true,
+          visible: false,
           label: "huh",
           position: "left",
           colour: "red",

@@ -38,7 +38,7 @@ export default function IntroductionTransition() {
         end: "+=100%",
         pin: true,
         scrub: true,
-        markers: true,
+        markers: false,
       },
     });
 
@@ -211,10 +211,10 @@ export default function IntroductionTransition() {
             </ul>
           </div>
 
-          <div className={`text-left mb-4 ${headingColor}`}>
+          {/* <div className={`text-left mb-4 ${headingColor}`}>
             <h3 className="text-lg font-semibold">Experience</h3>
-            <p>Software Developer at XYZ Corp</p>
-          </div>
+            <p></p>
+          </div> */}
 
           <div className={`text-left mb-4 ${headingColor}`}>
             <h3 className="text-lg font-semibold">Education</h3>
