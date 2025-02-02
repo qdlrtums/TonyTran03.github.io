@@ -10,6 +10,9 @@ const lerp = (start, end, factor) => {
 
 function App() {
   useEffect(() => {
+    // Only initialize cursor functionality if not on mobile
+    if (window.innerWidth <= 768) return;
+
     const cursorInner = document.querySelector(".cursor-inner");
     const cursorOuter = document.querySelector(".cursor-outer");
 
@@ -48,10 +51,13 @@ function App() {
   return (
     <Router>
       <div>
-        <div className="cursor">
-          <div className="cursor-inner"></div>
-          <div className="cursor-outer"></div>
-        </div>
+        {/* Only render cursor elements if not on mobile */}
+        {window.innerWidth > 768 && (
+          <div className="cursor">
+            <div className="cursor-inner"></div>
+            <div className="cursor-outer"></div>
+          </div>
+        )}
         <Routes>
           <Route index element={<Intro />} />
         </Routes>

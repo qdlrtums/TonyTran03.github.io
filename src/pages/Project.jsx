@@ -56,12 +56,19 @@ export default function Projects() {
       githubUrl: "https://github.com/TonyTran03/Sharity", // GitHub URL
     },
     {
-      title:
-        "Jeopardy — Vite + React, MongoDB, Tailwind, WebSocket, Express.js",
+      title: "Jeopardy",
       description:
         "Engineered a Jeopardy game platform, integrating WebSocket for instant buzzer functionality and MongoDB for game creation.",
       image: "/website_photo/projectphoto/jeopardy.jpg",
       githubUrl: "https://github.com/TonyTran03/Jeopardy", // GitHub URL
+    },
+    {
+      title: "That's Fire: Wildfire Predictor",
+      description:
+        "Developed a full-stack wildfire prediction platform with a self-trained machine-learning model with real-time data analysis. (Submission for UofTHacks 12)",
+      image: "/website_photo/projectphoto/trucky_img.png",
+      githubUrl: "https://github.com/TonyTran03/global_fire_detector", // Git
+      websiteUrl: "https://magnificent-rejoicing-production.up.railway.app/", // Add website URL for each project
     },
   ];
 
@@ -103,7 +110,8 @@ export default function Projects() {
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-48 object-cover rounded-md mb-4"
+              className="w-full h-48 object-cover rounded-md mb-4 overflow-hidden"
+              style={{ backgroundColor: cardBackgroundColor }}
             />
             <h2 className={`text-2xl font-bold mb-2 ${headingColor}`}>
               {project.title}
@@ -115,17 +123,36 @@ export default function Projects() {
               {project.description}
             </p>
 
-            {/* GitHub Button */}
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`mt-4 inline-block px-6 py-2 rounded ${
-                isDayMode ? "bg-blue-500 text-white" : "bg-white text-black"
-              } font-semibold hover:opacity-90 transition`}
-            >
-              View on GitHub
-            </a>
+            {/* Buttons Container */}
+            <div className="flex gap-4 mt-4">
+              {/* GitHub Button */}
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-block px-6 py-2 rounded ${
+                  isDayMode ? "bg-blue-500 text-white" : "bg-white text-black"
+                } font-semibold hover:opacity-90 transition`}
+              >
+                View on GitHub
+              </a>
+
+              {/* Website Button - Only show if websiteUrl exists */}
+              {project.websiteUrl && (
+                <a
+                  href={project.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-block px-6 py-2 rounded ${
+                    isDayMode
+                      ? "bg-green-500 text-white"
+                      : "bg-green-400 text-black"
+                  } font-semibold hover:opacity-90 transition`}
+                >
+                  Visit Website
+                </a>
+              )}
+            </div>
           </div>
         ))}
 

@@ -15,6 +15,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "@fontsource/bebas-neue";
 import { useGSAP } from "@gsap/react";
 import IntroductionTransition from "./IntroductionTransition.jsx";
+import { BackgroundEffects } from "../components/BackgroundEffects";
 
 import "./Intro.css";
 import Project from "./Project.jsx";
@@ -67,17 +68,7 @@ export default function Intro() {
         className="flex flex-col lg:flex-row min-h-screen shadow-sm"
       >
         <div className="absolute w-full h-screen bg-[var(--cookies)] z-10">
-          {isDayMode ? (
-            <Particles
-              className="absolute w-full h-screen"
-              quantity={155}
-              ease={80}
-              color={"#181818"}
-              refresh
-            />
-          ) : (
-            <Meteors number={45} />
-          )}
+          <BackgroundEffects isDayMode={isDayMode} />
 
           <div
             ref={refName}
@@ -105,7 +96,7 @@ export default function Intro() {
               <Typography
                 sx={{
                   ml: 4,
-
+                  pt: 3,
                   fontSize: "2rem",
                   fontFamily: "CustomFont, sans-serif",
                   fontStyle: "italic",
@@ -118,7 +109,6 @@ export default function Intro() {
           </div>
         </div>
       </div>
-      {/* Ensure IntroductionTransition fills the space */}
       <IntroductionTransition />
       <Project />
     </MuiThemeProvider>

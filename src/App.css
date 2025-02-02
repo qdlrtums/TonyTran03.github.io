@@ -71,3 +71,9 @@ body {
     0.1
   ); /* Optional: Add a background color if needed */
 }
+
+@media (max-width: 768px) {
+  .cursor {
+    display: none;
+  }
+}
